@@ -66,6 +66,8 @@
     display:flex; flex-direction:column; align-items:flex-end; gap:4px;
   }
   .counter .label{ color: var(--ink-3); letter-spacing: .04em; }
+  .parent-link{ font-family:var(--mono); font-size:10px; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-3); border:1px solid var(--line); padding:6px 10px; border-radius:999px; white-space:nowrap; margin-bottom:2px; }
+  .parent-link:hover{ color:var(--ink); border-color:var(--ink-3); }
   .counter .digits{ display:flex; gap:2px; }
   .counter .digits span{
     display:inline-block;
@@ -1028,19 +1030,20 @@
 
 
 <header class="header">
-  <div class="brand">MUSEUM<br><em style="font-family:var(--serif);font-style:italic;">of</em>&nbsp;TRAVEL&nbsp;TILES</div>
-  <nav class="nav" id="topnav">
-    <a href="#" data-view="wall" class="active">Museum</a>
+  <a class="brand" href="/travel-tiles/" aria-label="Travel Tiles home">MUSEUM<br><em style="font-family:var(--serif);font-style:italic;">of</em>&nbsp;TRAVEL&nbsp;TILES</a>
+  <nav class="nav" id="topnav" aria-label="Travel Tiles navigation">
+    <a href="/travel-tiles/" data-view="wall" class="active">Museum</a>
     <span class="sep">|</span>
-    <a href="#" data-view="atlas">Atlas</a>
+    <a href="/travel-tiles/#atlas" data-view="atlas">Atlas</a>
     <span class="sep">|</span>
-    <a href="Studio.html">Studio</a>
+    <a href="/travel-tiles/studio.html">Studio</a>
     <span class="sep">|</span>
-    <a href="Play.html">Play</a>
+    <a href="/travel-tiles/play.html">Play</a>
     <span class="sep">|</span>
-    <a href="Shop.html">Shop</a>
+    <a href="/travel-tiles/shop.html">Shop</a>
   </nav>
   <div class="counter">
+    <a class="parent-link" href="/" aria-label="Back to Code & Craft">Code &amp; Craft ↗</a>
     <span class="label">Total tiles</span>
     <span class="digits" id="counter-digits">
       <span>0</span><span>0</span><span>9</span><span>3</span><span>1</span><span>4</span>
@@ -1182,19 +1185,19 @@
       <div class="lede">One system, three doors. Learn the grammar by playing, shape your own tile, then hold the real thing.</div>
     </div>
     <div class="doors-grid">
-      <a class="door" href="Play.html">
+      <a class="door" href="/travel-tiles/play.html">
         <div class="door-kicker">01 — Play</div>
         <h3>Match the motifs.</h3>
         <p>A puzzle that teaches the shared vocabulary of the world's tile — rosettes, stars, vine arcs. Clear a tradition to unlock the next, and its cutters open in the Studio.</p>
         <span class="go">Start playing →</span>
       </a>
-      <a class="door" href="Studio.html">
+      <a class="door" href="/travel-tiles/studio.html">
         <div class="door-kicker">02 — Studio</div>
         <h3>Design your own.</h3>
         <p>Compose a tile from a tradition's grammar — its motifs, symmetry, and glaze palette. Watch the structural layer that becomes a real mold form beneath the colour.</p>
         <span class="go">Open the Studio →</span>
       </a>
-      <a class="door" href="Shop.html">
+      <a class="door" href="/travel-tiles/shop.html">
         <div class="door-kicker">03 — Shop</div>
         <h3>Make it real.</h3>
         <p>City editions, custom tiles, prints, and home objects — fabricated from digital design to fired clay. Each one carries the place, era, and grammar it came from.</p>
@@ -1306,8 +1309,8 @@
       <div class="field"><h3>Distinctive signature</h3><p id="detail-sig"></p></div>
       <div class="field"><h3>Why this tile matters</h3><p id="detail-story"></p></div>
       <div class="cta-row">
-        <a class="btn-primary" id="detail-order" href="Shop.html#editions">ORDER THIS TILE — $48</a>
-        <a class="btn-ghost" href="Studio.html">GENERATE A VARIANT</a>
+        <a class="btn-primary" id="detail-order" href="/travel-tiles/shop.html#editions">ORDER THIS TILE — $48</a>
+        <a class="btn-ghost" href="/travel-tiles/studio.html">GENERATE A VARIANT</a>
       </div>
     </section>
   </div>
@@ -1321,7 +1324,7 @@
       <div class="kicker">METHOD</div>
       <h2>How this tile was generated</h2>
       <p>Each tile is composed by a parametric grammar derived from the source tradition's vocabulary — motif zones (core, edge, corner), symmetry group, and palette. The structural layer below is what becomes the 3D-printed mold; the visual layer above is what you see on screen.</p>
-      <a class="learn" id="learn-grammar" href="Studio.html">LEARN MORE ABOUT THE GRAMMAR →</a>
+      <a class="learn" id="learn-grammar" href="/travel-tiles/studio.html">LEARN MORE ABOUT THE GRAMMAR →</a>
     </div>
     <div class="modal-right">
       <div class="head">
@@ -2436,7 +2439,12 @@ function gotoView(v){
 }
 
 document.querySelectorAll('.nav a[data-view]').forEach(a => {
-  a.addEventListener('click', e => { e.preventDefault(); gotoView(a.dataset.view); });
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    gotoView(a.dataset.view);
+    if (a.dataset.view === 'atlas') history.replaceState(null, '', '/travel-tiles/#atlas');
+    if (a.dataset.view === 'wall') history.replaceState(null, '', '/travel-tiles/');
+  });
 });
 
 // Intro inline links
@@ -2544,6 +2552,15 @@ document.addEventListener('keydown', e => {
       closeDetail();
     }
   }
+});
+
+
+// Open Atlas directly when landing on /travel-tiles/#atlas.
+window.addEventListener('load', () => {
+  if (window.location.hash === '#atlas') gotoView('atlas');
+});
+window.addEventListener('hashchange', () => {
+  if (window.location.hash === '#atlas') gotoView('atlas');
 });
 
 // Visit counter increment
