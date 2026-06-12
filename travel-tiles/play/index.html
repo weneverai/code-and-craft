@@ -220,7 +220,7 @@
   .nav a:hover,.nav a.active{ color:var(--ink); }
   .nav .sep{ color:var(--line); padding:0; user-select:none; }
   .header-end{ justify-self:end; display:flex; align-items:center; gap:10px; }
-  .parent-link{ font-family:var(--mono); font-size:10px; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-3); border:1px solid var(--line); padding:7px 12px; border-radius:999px; transition:all .15s ease; white-space:nowrap; }
+  .parent-link{ font-family:var(--mono); font-size:10px; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-3); border:1px solid var(--line); padding:7px 12px; border-radius:999px; transition:all .15s ease; white-space:nowrap; text-decoration:none; }
   .parent-link:hover{ color:var(--ink); border-color:var(--ink-3); }
   .reset-progress{ font-family:var(--mono); font-size:10px; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-3); border:1px solid var(--line); padding:7px 12px; border-radius:999px; transition:all .15s ease; }
   .reset-progress:hover{ color:var(--ink); border-color:var(--ink-3); }
@@ -265,6 +265,20 @@
   .board-sub{ font-family:var(--mono); font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-3); margin-top:4px; }
   .board-stats{ display:flex; gap:22px; font-family:var(--mono); font-size:11px; letter-spacing:.06em; text-transform:uppercase; color:var(--ink-3); }
   .board-stats b{ display:block; font-size:22px; color:var(--ink); letter-spacing:0; }
+
+  .challenge-strip{
+    margin:0 0 22px; padding:16px 18px; border:1px solid var(--line-dark); border-radius:16px;
+    background:linear-gradient(135deg, rgba(244,239,230,.88), rgba(255,255,255,.78));
+    display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap;
+    box-shadow:0 10px 28px rgba(26,26,26,.06);
+  }
+  .challenge-kicker{ font-family:var(--mono); font-size:10px; letter-spacing:.18em; text-transform:uppercase; color:var(--accent); margin-bottom:5px; }
+  .challenge-title{ font-family:var(--serif); font-size:24px; line-height:1.05; color:var(--ink); }
+  .challenge-note{ font-size:13px; color:var(--ink-2); margin-top:5px; max-width:54ch; }
+  .challenge-pills{ display:flex; gap:8px; flex-wrap:wrap; }
+  .challenge-pill{ min-width:106px; padding:10px 12px; border:1px solid var(--line); border-radius:12px; background:var(--paper); }
+  .challenge-pill span{ display:block; font-family:var(--mono); font-size:9px; letter-spacing:.13em; text-transform:uppercase; color:var(--ink-3); margin-bottom:4px; }
+  .challenge-pill strong{ display:block; font-family:var(--mono); font-size:13px; color:var(--ink); font-weight:500; }
   .coach{ font-family:var(--mono); font-size:12px; color:var(--ink-2); background:var(--surface); border:1px solid var(--line); border-radius:999px; padding:10px 18px; display:inline-flex; gap:8px; align-items:center; margin-bottom:18px; }
   .coach .dot{ width:7px; height:7px; border-radius:50%; background:var(--accent); }
 
@@ -301,13 +315,30 @@
   .toast.show{ opacity:1; transform:translateX(-50%) translateY(0); }
   .modal{ position:fixed; inset:0; background:rgba(26,26,26,.55); display:none; align-items:center; justify-content:center; padding:24px; z-index:150; }
   .modal.shown{ display:flex; }
-  .modal-card{ background:var(--paper); border-radius:12px; max-width:440px; width:100%; padding:40px 36px; text-align:center; position:relative; }
+  .modal-card{ background:var(--paper); border-radius:12px; max-width:540px; width:100%; padding:40px 36px; text-align:center; position:relative; }
   .modal-card .badge{ font-family:var(--mono); font-size:11px; letter-spacing:.2em; text-transform:uppercase; color:var(--accent); }
   .modal-card h2{ font-family:var(--serif); font-weight:400; font-size:38px; line-height:1.02; margin:10px 0 8px; }
   .modal-card p{ color:var(--ink-2); font-size:15px; margin-bottom:8px; }
   .modal-card .reward{ aspect-ratio:1/1; width:140px; margin:18px auto; border-radius:10px; overflow:hidden; border:1px solid var(--line); }
   .modal-card .reward svg{ width:100%; height:100%; display:block; }
   .modal-actions{ display:flex; flex-direction:column; gap:10px; margin-top:22px; }
+  .scoreline{ display:none; align-items:center; justify-content:center; gap:10px; margin:14px auto 4px; color:var(--ink-2); font-family:var(--mono); font-size:11px; letter-spacing:.04em; text-transform:uppercase; }
+  .scoreline.show{ display:flex; }
+  .stars{ display:inline-flex; gap:2px; font-size:17px; letter-spacing:0; color:var(--accent); }
+  .stars .empty{ color:var(--line); }
+  .grammar-card{ display:none; text-align:left; margin:18px 0 4px; padding:16px 16px 14px; border:1px solid var(--line); border-radius:12px; background:rgba(244,239,230,.62); }
+  .grammar-card.show{ display:block; }
+  .grammar-kicker{ font-family:var(--mono); font-size:10px; letter-spacing:.16em; text-transform:uppercase; color:var(--accent); margin-bottom:8px; }
+  .grammar-title{ font-family:var(--serif); font-size:24px; line-height:1; color:var(--ink); margin-bottom:12px; }
+  .grammar-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin-bottom:12px; }
+  .grammar-chip{ border:1px solid var(--line); background:var(--paper); border-radius:9px; padding:9px 10px; min-height:64px; }
+  .grammar-chip span{ display:block; font-family:var(--mono); font-size:9px; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-3); margin-bottom:5px; }
+  .grammar-chip b{ display:block; font-size:12px; line-height:1.25; font-weight:500; color:var(--ink); }
+  .grammar-card p{ font-size:13px; line-height:1.45; margin:0; color:var(--ink-2); }
+  .unlock-ribbon{ margin:14px auto 4px; display:inline-flex; align-items:center; justify-content:center; gap:8px; padding:8px 12px; border-radius:999px; background:var(--ink); color:var(--paper); font-family:var(--mono); font-size:10px; letter-spacing:.14em; text-transform:uppercase; }
+  .modal-card .reward.unlock-tile{ width:150px; box-shadow:0 14px 35px rgba(26,26,26,.15); border-color:var(--ink); }
+  @media (max-width:560px){ .modal-card{ padding:34px 22px; } .grammar-grid{ grid-template-columns:1fr; } .scoreline{ flex-direction:column; gap:5px; } }
+
 
   @media (max-width:760px){
     .header{ padding:13px 18px; }
@@ -321,6 +352,7 @@
 </style>
 </head>
 <body>
+<!-- Code & Craft patch: Travel Tiles Play challenge build v4, challenge logic preserved + root-relative nav -->
 
 
 
@@ -354,9 +386,9 @@
 <section class="view" id="view-select">
   <div class="wrap">
     <div class="select-head">
-      <div class="eyebrow">Play · the tile route</div>
+      <div class="eyebrow">Play · challenge build v3</div>
       <h1>Choose a tradition.</h1>
-      <p>Each city has three boards. Clear all three to unlock the next tradition — and its cutters open in the Studio. Match motifs that recur across the world's tile.</p>
+      <p>Each city has three boards. Clear all three to unlock the next tradition — and its cutters open in the Studio. New in this build: 3-star clears, grammar reward cards, and hints that cost +1 move.</p>
     </div>
     <div class="city-grid" id="city-grid"></div>
   </div>
@@ -376,6 +408,18 @@
         <div><span>Left</span><b id="stat-left">0</b></div>
       </div>
     </div>
+    <div class="challenge-strip" id="challenge-strip">
+      <div>
+        <div class="challenge-kicker">Challenge mode v3</div>
+        <div class="challenge-title">Read the tile grammar, not just the picture.</div>
+        <div class="challenge-note">Clear in the target moves for 3 stars. Hint reveals a valid pair, but adds +1 move.</div>
+      </div>
+      <div class="challenge-pills">
+        <div class="challenge-pill"><span>3-star target</span><strong id="stat-target">—</strong></div>
+        <div class="challenge-pill"><span>Hints used</span><strong id="stat-hints">0</strong></div>
+        <div class="challenge-pill"><span>Best clear</span><strong id="stat-best">—</strong></div>
+      </div>
+    </div>
     <div id="coach-wrap"></div>
     <div class="grid-stage" id="board-grid"></div>
     <div class="board-actions">
@@ -392,6 +436,8 @@
     <div class="badge" id="modal-badge">Board cleared</div>
     <h2 id="modal-title"></h2>
     <p id="modal-text"></p>
+    <div class="scoreline" id="modal-score"></div>
+    <div class="grammar-card" id="modal-grammar"></div>
     <div class="reward" id="modal-reward" style="display:none;"></div>
     <div class="modal-actions" id="modal-actions"></div>
   </div>
@@ -1122,6 +1168,38 @@ const MOTIF_NAMES = {
   petal:'Petal node', leaf:'Leaf curl', fan:'Corner fan', dots:'Bead cluster',
   arc:'Vine arc', band:'Frieze band', dotrow:'Bead row', lozenge:'Lozenge',
 };
+
+function escapeHTML(s){ return String(s).replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch])); }
+function countLayers(tiles){ return tiles.reduce((sum,t)=>sum+Object.keys(t.layers).length,0); }
+function starMarkup(stars){
+  let out='<span class="stars" aria-label="'+stars+' of 3 stars">';
+  for(let i=1;i<=3;i++) out += `<span class="${i<=stars?'':'empty'}">★</span>`;
+  return out + '</span>';
+}
+function scoreLabel(stars){ return stars===3 ? 'Perfect clear' : stars===2 ? 'Good eye' : 'Still learning'; }
+function perfectTarget(){ return Math.max(1, Math.ceil((cur.startLayers || countLayers(cur.tiles)) / 2)); }
+function boardStars(){
+  const perfect = perfectTarget();
+  if(cur.hints===0 && cur.moves<=perfect) return 3;
+  if(cur.hints<=1 && cur.moves<=perfect+3) return 2;
+  return 1;
+}
+function plural(n, word){ return `${n} ${word}${n===1?'':'s'}`; }
+function grammarCardHTML(city){
+  const core = city.core.map(m=>MOTIF_NAMES[m]||m).join(' / ');
+  const corner = city.corner.map(m=>MOTIF_NAMES[m]||m).join(' / ');
+  const edge = city.edge.map(m=>MOTIF_NAMES[m]||m).join(' / ');
+  return `
+    <div class="grammar-kicker">Grammar card · ${escapeHTML(city.local)}</div>
+    <div class="grammar-title">${escapeHTML(city.name)} pattern grammar</div>
+    <div class="grammar-grid">
+      <div class="grammar-chip"><span>Center</span><b>${escapeHTML(core)}</b></div>
+      <div class="grammar-chip"><span>Corner</span><b>${escapeHTML(corner)}</b></div>
+      <div class="grammar-chip"><span>Edge</span><b>${escapeHTML(edge)}</b></div>
+    </div>
+    <p>You cleared this board by reading the tile as layers: center motif, corner logic, and border rhythm. That grammar can now travel into the Studio.</p>`;
+}
+
 const CORE_MOTIFS   = ['rosette','peony','star8','medallion','quatrefoil'];
 const CORNER_MOTIFS = ['petal','leaf','fan','dots'];
 const EDGE_MOTIFS   = ['arc','band','dotrow','lozenge'];
@@ -1272,17 +1350,27 @@ function makeOnboardBoard(city){
 // ============================================================================
 const UNLOCK_KEY   = 'majolica.unlocked.v1';
 const PROGRESS_KEY = 'tt.play.progress.v1';
+const RATING_KEY   = 'tt.play.ratings.v1';
 const ONBOARD_KEY  = 'tt.play.onboarded';
 
 function loadUnlocked(){ try{const r=localStorage.getItem(UNLOCK_KEY); if(r) return new Set(JSON.parse(r));}catch(e){} return new Set(['tainan']); }
 function saveUnlocked(s){ try{localStorage.setItem(UNLOCK_KEY, JSON.stringify([...s]));}catch(e){} }
 function loadProgress(){ try{const r=localStorage.getItem(PROGRESS_KEY); if(r) return JSON.parse(r);}catch(e){} return {}; }
 function saveProgress(p){ try{localStorage.setItem(PROGRESS_KEY, JSON.stringify(p));}catch(e){} }
+function loadRatings(){ try{const r=localStorage.getItem(RATING_KEY); if(r) return JSON.parse(r);}catch(e){} return {}; }
+function saveRatings(p){ try{localStorage.setItem(RATING_KEY, JSON.stringify(p));}catch(e){} }
 
 let unlocked = loadUnlocked();
 let progress = loadProgress();           // { cityKey: boardsCleared(0..3) }
+let ratings = loadRatings();             // { "cityKey:boardIndex": bestStars }
 const isUnlocked = k => k==='tainan' || unlocked.has(k);
 const boardsCleared = k => progress[k] || 0;
+const ratingKey = (cityKey, boardIndex) => `${cityKey}:${boardIndex}`;
+function saveBoardRating(cityKey, boardIndex, stars){
+  const key = ratingKey(cityKey, boardIndex);
+  ratings[key] = Math.max(ratings[key] || 0, stars);
+  saveRatings(ratings);
+}
 
 // ============================================================================
 // VIEWS
@@ -1316,7 +1404,7 @@ function renderSelect(){
 }
 
 // ---- Board play ----
-let cur = null; // { city, boardIndex, tiles, cols, sel, moves, onboarding }
+let cur = null; // { city, boardIndex, tiles, cols, sel, moves, hints, startLayers, onboarding }
 
 function startCity(key){
   const done=boardsCleared(key);
@@ -1326,7 +1414,7 @@ function startCity(key){
 function startBoard(key, boardIndex){
   const city=cityOf(key);
   const b=makeBoard(city, boardIndex);
-  cur={ city, boardIndex, tiles:b.tiles, cols:b.cols, sel:null, moves:0, onboarding:false };
+  cur={ city, boardIndex, tiles:b.tiles, cols:b.cols, sel:null, moves:0, hints:0, startLayers:countLayers(b.tiles), onboarding:false };
   document.getElementById('board-title').textContent=city.name;
   document.getElementById('board-sub').textContent=`Board ${boardIndex+1} of 3 · ${city.era}`;
   document.getElementById('coach-wrap').innerHTML = boardIndex===0
@@ -1334,7 +1422,7 @@ function startBoard(key, boardIndex){
   paintBoard('board-grid');
   show('board');
 }
-function layersLeft(){ let n=0; cur.tiles.forEach(t=>n+=Object.keys(t.layers).length); return n; }
+function layersLeft(){ return countLayers(cur.tiles); }
 
 function paintBoard(mountId){
   const grid=document.getElementById(mountId);
@@ -1351,9 +1439,16 @@ function paintBoard(mountId){
   updateStats();
 }
 function updateStats(){
-  const m=document.getElementById('stat-moves'), l=document.getElementById('stat-left');
+  const m=document.getElementById('stat-moves'), l=document.getElementById('stat-left'),
+        target=document.getElementById('stat-target'), hints=document.getElementById('stat-hints'), best=document.getElementById('stat-best');
   if(m) m.textContent=cur.moves;
   if(l) l.textContent=layersLeft();
+  if(target) target.textContent='≤ '+perfectTarget()+' moves';
+  if(hints) hints.textContent=cur.hints;
+  if(best && !cur.onboarding){
+    const saved=ratings[ratingKey(cur.city.key, cur.boardIndex)] || 0;
+    best.innerHTML = saved ? starMarkup(saved) : '—';
+  }
 }
 
 function sharedSlot(a,b){
@@ -1402,7 +1497,7 @@ function setCoach(msg){ const c=document.getElementById('onboard-coach'); if(c) 
 function startOnboard(){
   const city=cityOf('tainan');
   const b=makeOnboardBoard(city);
-  cur={ city, boardIndex:-1, tiles:b.tiles, cols:b.cols, sel:null, moves:0, onboarding:true };
+  cur={ city, boardIndex:-1, tiles:b.tiles, cols:b.cols, sel:null, moves:0, hints:0, startLayers:countLayers(b.tiles), onboarding:true };
   const grid=document.getElementById('onboard-grid');
   grid.style.gridTemplateColumns=`repeat(${b.cols},1fr)`;
   grid.innerHTML='';
@@ -1423,35 +1518,44 @@ function onBoardSolved(){
   const newDone=Math.max(prevDone, cur.boardIndex+1);
   progress[key]=newDone; saveProgress(progress);
 
+  const stars=boardStars();
+  saveBoardRating(key, cur.boardIndex, stars);
+
   const modal=document.getElementById('modal');
   const badge=document.getElementById('modal-badge'), title=document.getElementById('modal-title'),
-        text=document.getElementById('modal-text'), reward=document.getElementById('modal-reward'),
+        text=document.getElementById('modal-text'), score=document.getElementById('modal-score'),
+        grammar=document.getElementById('modal-grammar'), reward=document.getElementById('modal-reward'),
         actions=document.getElementById('modal-actions');
-  reward.style.display='none'; actions.innerHTML='';
+  reward.style.display='none'; reward.classList.remove('unlock-tile'); reward.innerHTML='';
+  actions.innerHTML='';
+  score.classList.add('show');
+  score.innerHTML=`${starMarkup(stars)}<span>${scoreLabel(stars)} · ${plural(cur.moves,'move')} · ${plural(cur.hints,'hint')}</span>`;
+  grammar.classList.add('show');
+  grammar.innerHTML=grammarCardHTML(cur.city);
 
   if(newDone>=3){
     // city complete → unlock next
     const nk=nextCityKey(key);
-    badge.textContent='Tradition complete';
-    title.textContent=`${cur.city.name} cleared`;
+    badge.textContent='Studio unlock';
+    title.textContent=`${cur.city.name} mastered`;
     if(nk){
       unlocked.add(nk); saveUnlocked(unlocked);
       const nc=cityOf(nk);
-      text.textContent=`All three boards solved. You’ve unlocked ${nc.name} — its cutters are now open in the Studio.`;
-      reward.style.display='block'; reward.innerHTML=cityThumb(nc);
+      text.innerHTML=`<span class="unlock-ribbon">New tradition unlocked</span><br>All three boards solved. <strong>${escapeHTML(nc.name)}</strong> cutters are now open in the Studio.`;
+      reward.style.display='block'; reward.classList.add('unlock-tile'); reward.innerHTML=cityThumb(nc);
       actions.innerHTML=`
-        <button class="btn solid" id="m-next">Play ${nc.name} →</button>
-        <a class="btn ghost" href="studio.html">Open in Studio →</a>
+        <a class="btn solid" href="/travel-tiles/studio.html?city=${encodeURIComponent(nk)}">Open unlocked cutters →</a>
+        <button class="btn ghost" id="m-next">Play ${escapeHTML(nc.name)} →</button>
         <button class="btn ghost" id="m-cities">Back to all cities</button>`;
       setTimeout(()=>document.getElementById('m-next').addEventListener('click',()=>{ closeModal(); startCity(nk); }),0);
     } else {
-      text.textContent='You’ve cleared every tradition on the route. The whole atlas is open in the Studio.';
+      text.innerHTML=`<span class="unlock-ribbon">Atlas route complete</span><br>You’ve cleared every tradition on the route. The whole atlas is open in the Studio.`;
       actions.innerHTML=`<a class="btn solid" href="/travel-tiles/studio.html">Open the Studio →</a><button class="btn ghost" id="m-cities">Back to all cities</button>`;
     }
   } else {
-    badge.textContent='Board cleared';
-    title.textContent=`Board ${cur.boardIndex+1} done`;
-    text.textContent=`${newDone} of 3 boards cleared for ${cur.city.name}. Clear all three to unlock the next tradition.`;
+    badge.textContent='Challenge result';
+    title.textContent=`Board ${cur.boardIndex+1} complete`;
+    text.textContent=`${newDone} of 3 boards cleared for ${cur.city.name}. Clear all three to unlock the next tradition and its Studio cutters.`;
     actions.innerHTML=`
       <button class="btn solid" id="m-next">Next board →</button>
       <button class="btn ghost" id="m-cities">Back to all cities</button>`;
@@ -1465,6 +1569,7 @@ function closeModal(){ document.getElementById('modal').classList.remove('shown'
 // ---- Hint: briefly flash one valid pair ----
 function showHint(){
   if(!cur || cur.onboarding) return;
+  cur.hints++;
   cur.moves++;
   updateStats();
   toast('Hint used · +1 move');
@@ -1489,8 +1594,8 @@ document.getElementById('btn-hint').addEventListener('click',showHint);
 document.getElementById('modal').addEventListener('click',e=>{ if(e.target.id==='modal') closeModal(); });
 document.getElementById('reset-progress').addEventListener('click',()=>{
   if(confirm('Reset all Play progress and locked cities? This also re-locks Studio cities.')){
-    try{ localStorage.removeItem(UNLOCK_KEY); localStorage.removeItem(PROGRESS_KEY); localStorage.removeItem(ONBOARD_KEY); }catch(e){}
-    unlocked=loadUnlocked(); progress=loadProgress();
+    try{ localStorage.removeItem(UNLOCK_KEY); localStorage.removeItem(PROGRESS_KEY); localStorage.removeItem(RATING_KEY); localStorage.removeItem(ONBOARD_KEY); }catch(e){}
+    unlocked=loadUnlocked(); progress=loadProgress(); ratings=loadRatings();
     boot();
   }
 });
