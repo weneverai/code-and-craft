@@ -219,7 +219,9 @@
   .nav a,.nav .sep{ padding:4px 14px; color:var(--ink-3); transition:color .15s ease; }
   .nav a:hover,.nav a.active{ color:var(--ink); }
   .nav .sep{ color:var(--line); padding:0; user-select:none; }
-  .header-end{ justify-self:end; }
+  .header-end{ justify-self:end; display:flex; align-items:center; gap:10px; }
+  .parent-link{ font-family:var(--mono); font-size:10px; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-3); border:1px solid var(--line); padding:7px 12px; border-radius:999px; transition:all .15s ease; white-space:nowrap; }
+  .parent-link:hover{ color:var(--ink); border-color:var(--ink-3); }
   .reset-progress{ font-family:var(--mono); font-size:10px; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-3); border:1px solid var(--line); padding:7px 12px; border-radius:999px; transition:all .15s ease; }
   .reset-progress:hover{ color:var(--ink); border-color:var(--ink-3); }
 
@@ -323,15 +325,18 @@
 
 
 <header class="header">
-  <a href="./" class="brand">Travel&nbsp;Tiles&nbsp;<span style="font-size:9px;letter-spacing:.1em;color:var(--ink-3);text-transform:uppercase;">®</span></a>
-  <nav class="nav">
-    <a href="./">Museum</a><span class="sep">|</span>
-    <a href="./#atlas">Atlas</a><span class="sep">|</span>
-    <a href="play.html" class="active">Play</a><span class="sep">|</span>
-    <a href="studio.html">Studio</a><span class="sep">|</span>
-    <a href="shop.html">Shop</a>
+  <a href="/travel-tiles/" class="brand">Travel&nbsp;Tiles&nbsp;<span style="font-size:9px;letter-spacing:.1em;color:var(--ink-3);text-transform:uppercase;">®</span></a>
+  <nav class="nav" aria-label="Travel Tiles navigation">
+    <a href="/travel-tiles/">Museum</a><span class="sep">|</span>
+    <a href="/travel-tiles/#atlas">Atlas</a><span class="sep">|</span>
+    <a href="/travel-tiles/studio.html">Studio</a><span class="sep">|</span>
+    <a href="/travel-tiles/play.html" class="active" aria-current="page">Play</a><span class="sep">|</span>
+    <a href="/travel-tiles/shop.html">Shop</a>
   </nav>
-  <div class="header-end"><button class="reset-progress" id="reset-progress">Reset progress</button></div>
+  <div class="header-end">
+    <a class="parent-link" href="/" aria-label="Back to Code & Craft">Code &amp; Craft ↗</a>
+    <button class="reset-progress" id="reset-progress">Reset progress</button>
+  </div>
 </header>
 
 <!-- ONBOARDING -->
@@ -1441,7 +1446,7 @@ function onBoardSolved(){
       setTimeout(()=>document.getElementById('m-next').addEventListener('click',()=>{ closeModal(); startCity(nk); }),0);
     } else {
       text.textContent='You’ve cleared every tradition on the route. The whole atlas is open in the Studio.';
-      actions.innerHTML=`<a class="btn solid" href="studio.html">Open the Studio →</a><button class="btn ghost" id="m-cities">Back to all cities</button>`;
+      actions.innerHTML=`<a class="btn solid" href="/travel-tiles/studio.html">Open the Studio →</a><button class="btn ghost" id="m-cities">Back to all cities</button>`;
     }
   } else {
     badge.textContent='Board cleared';
