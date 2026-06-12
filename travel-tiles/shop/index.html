@@ -77,6 +77,19 @@
   .nav a.active{ color: var(--ink); }
   .nav a:hover{ color: var(--ink); }
   .nav .sep{ color: var(--line); padding: 0; user-select:none; }
+  .parent-link{
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    border: 1px solid var(--line);
+    padding: 8px 12px;
+    border-radius: 999px;
+    white-space: nowrap;
+    transition: color .15s ease, border-color .15s ease;
+  }
+  .parent-link:hover{ color: var(--ink); border-color: var(--ink-3); }
 
   /* ===== Buttons ===== */
   .btn { font-family: var(--sans); font-size: 15px; padding: 14px 26px; border-radius: 999px; cursor: pointer; border: 1px solid var(--ink); background: var(--ink); color: var(--paper); display: inline-flex; align-items: center; gap: 10px; transition: background 0.18s, color 0.18s, border-color 0.18s; text-decoration: none; }
@@ -348,21 +361,24 @@
 </style>
 </head>
 <body>
+<!-- Code & Craft patch: Travel Tiles Shop root-relative nav -->
 
 <header class="header">
-  <a href="index.html" class="brand">Museum&nbsp;<em style="font-family:var(--serif);font-style:italic;">of</em>&nbsp;Travel&nbsp;Tiles</a>
-  <nav class="nav">
-    <a href="index.html">Museum</a>
+  <a href="/travel-tiles/" class="brand" aria-label="Travel Tiles home">Museum&nbsp;<em style="font-family:var(--serif);font-style:italic;">of</em>&nbsp;Travel&nbsp;Tiles</a>
+  <nav class="nav" aria-label="Travel Tiles navigation">
+    <a href="/travel-tiles/">Museum</a>
     <span class="sep">|</span>
-    <a href="index.html#atlas">Atlas</a>
+    <a href="/travel-tiles/#atlas">Atlas</a>
     <span class="sep">|</span>
-    <a href="Studio.html">Studio</a>
+    <a href="/travel-tiles/studio.html">Studio</a>
     <span class="sep">|</span>
-    <a href="Play.html">Play</a>
+    <a href="/travel-tiles/play.html">Play</a>
     <span class="sep">|</span>
-    <a href="Shop.html" class="active">Shop</a>
+    <a href="/travel-tiles/shop.html" class="active" aria-current="page">Shop</a>
   </nav>
-  <div class="header-end"></div>
+  <div class="header-end">
+    <a class="parent-link" href="/" aria-label="Back to Code & Craft">Code &amp; Craft ↗</a>
+  </div>
 </header>
 
 
@@ -374,7 +390,7 @@
     <span class="label">Browse</span>
     <a href="#editions" class="active">All</a>
     <a href="#editions">City Editions</a>
-    <a href="Studio.html">Custom Tiles</a>
+    <a href="/travel-tiles/studio.html">Custom Tiles</a>
     <a href="#objects">Home Objects</a>
     <a href="#prints">Prints</a>
     <a href="#workshops">Workshops</a>
@@ -391,7 +407,7 @@
       <p class="lede">Collectible tile objects made from the world's pattern traditions — customized through the Travel Tiles Studio. Each one comes from a place, a motif, and a story.</p>
       <div class="cta-row">
         <a href="#editions" class="btn">Shop ready-made editions</a>
-        <a href="Studio.html" class="btn ghost">Customize your own tile</a>
+        <a href="/travel-tiles/studio.html" class="btn ghost">Customize your own tile</a>
       </div>
     </div>
     <div class="product-wall" id="productWall">
@@ -416,7 +432,7 @@
       <div class="f-price">$128 <span>framed · ed. of 100</span></div>
       <div class="cta-row" style="display:flex;gap:12px;flex-wrap:wrap;">
         <a href="mailto:vibe.incubator@gmail.com?subject=Order%3A%20Tainan%20Red%20Brick%20Edition" class="btn">Add to cart</a>
-        <a href="Studio.html" class="btn ghost">Customize this tile</a>
+        <a href="/travel-tiles/studio.html" class="btn ghost">Customize this tile</a>
       </div>
       <div class="f-meta">
         <span><b>City</b> · Chiayi, Taiwan</span>
@@ -438,7 +454,7 @@
   </div>
   <div class="cats">
     <a class="cat" href="#editions"><div class="num">A</div><h3>City Editions</h3><p>Curated drops from a single tradition. Best for gifts and limited releases.</p><div class="go">Shop editions →</div></a>
-    <a class="cat" href="Studio.html"><div class="num">B</div><h3>Custom Tiles</h3><p>Choose a city, palette, motif density and format. Design it in the Studio.</p><div class="go">Create yours →</div></a>
+    <a class="cat" href="/travel-tiles/studio.html"><div class="num">B</div><h3>Custom Tiles</h3><p>Choose a city, palette, motif density and format. Design it in the Studio.</p><div class="go">Create yours →</div></a>
     <a class="cat" href="#objects"><div class="num">C</div><h3>Home Objects</h3><p>Coasters, trays, light panels, framed tiles. Pattern made useful.</p><div class="go">Shop objects →</div></a>
     <a class="cat" href="#prints"><div class="num">D</div><h3>Paper &amp; Digital</h3><p>Prints, postcards, wallpapers. Low-cost ways into the collection.</p><div class="go">Shop prints →</div></a>
     <a class="cat" href="#workshops"><div class="num">E</div><h3>Workshops</h3><p>Design and make your own travel tile. Public, private, and brand sessions.</p><div class="go">Book a workshop →</div></a>
@@ -467,7 +483,7 @@
       <div class="c-steps">
         <span>City</span><span>Palette</span><span>Motif density</span><span>Format</span><span>Name / date</span>
       </div>
-      <a href="Studio.html" class="btn invert">Create yours in the Studio →</a>
+      <a href="/travel-tiles/studio.html" class="btn invert">Create yours in the Studio →</a>
     </div>
     <div class="c-visual">
       <div class="tile-svg" data-tile="peranakan"></div>
@@ -575,11 +591,11 @@
       <div>
         <div class="col-title">Explore</div>
         <ul>
-          <li><a href="index.html">Museum</a></li>
-          <li><a href="index.html#atlas">Atlas</a></li>
-          <li><a href="Studio.html">Studio</a></li>
-          <li><a href="Play.html">Play</a></li>
-          <li><a href="Shop.html">Shop</a></li>
+          <li><a href="/travel-tiles/">Museum</a></li>
+          <li><a href="/travel-tiles/#atlas">Atlas</a></li>
+          <li><a href="/travel-tiles/studio.html">Studio</a></li>
+          <li><a href="/travel-tiles/play.html">Play</a></li>
+          <li><a href="/travel-tiles/shop.html">Shop</a></li>
         </ul>
       </div>
       <div>
@@ -712,7 +728,7 @@
   const grid = document.getElementById('editionsGrid');
   grid.innerHTML = order.map(k => {
     const c = CITIES[k];
-    return `<div class="ed-card" onclick="location.href='Studio.html'">
+    return `<div class="ed-card" onclick="location.href='/travel-tiles/studio.html'">
       <div class="ed-visual"><div class="mock mock-frame"><div class="tile-svg">${tileSVG(k)}</div></div></div>
       <div class="ed-body">
         <div class="ed-city">${c.city} · ${c.era}</div>
@@ -744,7 +760,7 @@
     return `<div class="mock mock-frame" style="width:66%;"><div class="tile-svg">${tileSVG(o.tile)}</div></div>`;
   }
   objGrid.innerHTML = OBJECTS.map(o=>`
-    <div class="obj" onclick="location.href='Studio.html'">
+    <div class="obj" onclick="location.href='/travel-tiles/studio.html'">
       <div class="o-visual">${mockHTML(o)}</div>
       <div class="o-body">
         <div class="o-type">${o.type}</div>
