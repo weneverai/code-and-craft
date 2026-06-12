@@ -1069,6 +1069,18 @@ footer li:hover { color: var(--ink); }
 .cell-popover:after, .cell-popover::after { display:none !important; content: none !important; }
 
 </style>
+
+<style>
+.education-bridge{max-width:1340px;margin:56px auto 0;padding:0 28px;}
+.education-bridge-inner{border:1px solid rgba(23,20,15,.14);background:#fffaf0;border-radius:28px;padding:28px;display:flex;justify-content:space-between;gap:24px;align-items:end;}
+.education-bridge h2{font-family:var(--serif, 'Instrument Serif', serif);font-weight:400;font-size:clamp(30px,4vw,52px);line-height:1;margin:6px 0 10px;color:var(--ink,#17140f);}
+.education-bridge p{max-width:62ch;color:var(--ink-2,rgba(23,20,15,.62));font-size:15px;line-height:1.55;}
+.education-kicker{font-family:var(--mono,'IBM Plex Mono',monospace);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent,#ff4a1f);}
+.education-bridge a{font-family:var(--mono,'IBM Plex Mono',monospace);font-size:11px;letter-spacing:.12em;text-transform:uppercase;border:1px solid var(--ink,#17140f);border-radius:999px;padding:14px 18px;white-space:nowrap;}
+.education-bridge a:hover{background:var(--ink,#17140f);color:var(--paper,#fffaf0);}
+@media(max-width:760px){.education-bridge-inner{display:block}.education-bridge a{display:inline-flex;margin-top:20px;white-space:normal;}}
+</style>
+
 </head>
 <body>
 <!-- Code & Craft patch: Travel Tiles Studio root-relative nav -->
@@ -1358,6 +1370,18 @@ footer li:hover { color: var(--ink); }
     <div class="stage-tag">MODE A · PROFESSIONAL</div>
     <h2>Generate <em>twins.</em></h2>
     <p>Parametric grammar with sliders, deterministic seed. Used to seed daily puzzles and editions.</p>
+  </div>
+</section>
+
+
+<section class="education-bridge" id="teach-with-travel-tiles">
+  <div class="education-bridge-inner">
+    <div>
+      <div class="education-kicker">Education</div>
+      <h2>Teach with Travel Tiles.</h2>
+      <p>Use the Museum, Play, and Studio modes as a classroom or museum workshop for visual grammar, color, symmetry, provenance, and slow making in the age of GenAI.</p>
+    </div>
+    <a href="/education/#travel-tiles">Open education pathway →</a>
   </div>
 </section>
 
