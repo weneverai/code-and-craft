@@ -84,6 +84,20 @@ body { min-height: 100vh; padding-bottom: 80px; user-select: none; }
   cursor: pointer; border-radius: 999px; transition: background 0.15s, border-color 0.15s;
 }
 .nav-cta:hover { background: var(--accent); border-color: var(--accent); }
+.nav-actions { display:flex; align-items:center; gap:10px; }
+.parent-link {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  border: 1px solid var(--rule);
+  padding: 8px 12px;
+  border-radius: 999px;
+  white-space: nowrap;
+  transition: color .15s ease, border-color .15s ease;
+}
+.parent-link:hover { color: var(--ink); border-color: var(--ink-3); }
 
 /* ─── hero ─── */
 .hero { padding: 48px 28px 28px; border-bottom: 1px solid var(--rule); }
@@ -1057,6 +1071,7 @@ footer li:hover { color: var(--ink); }
 </style>
 </head>
 <body>
+<!-- Code & Craft patch: Travel Tiles Studio root-relative nav -->
 
 
 
@@ -1123,19 +1138,22 @@ footer li:hover { color: var(--ink); }
 </svg>
 
 <nav class="nav">
-  <a href="index.html" class="logo" style="text-decoration:none;color:inherit;">Museum&nbsp;<em style="font-style:italic;">of</em>&nbsp;Travel&nbsp;Tiles</a>
-  <div class="tabs">
-    <a class="tab" id="tab-museum" href="index.html" style="text-decoration:none;">Museum</a>
+  <a href="/travel-tiles/" class="logo" style="text-decoration:none;color:inherit;" aria-label="Travel Tiles home">Museum&nbsp;<em style="font-style:italic;">of</em>&nbsp;Travel&nbsp;Tiles</a>
+  <div class="tabs" aria-label="Travel Tiles navigation">
+    <a class="tab" id="tab-museum" href="/travel-tiles/" style="text-decoration:none;">Museum</a>
     <span class="tab-sep">|</span>
-    <a class="tab" id="tab-atlas" href="index.html#atlas" style="text-decoration:none;">Atlas</a>
+    <a class="tab" id="tab-atlas" href="/travel-tiles/#atlas" style="text-decoration:none;">Atlas</a>
     <span class="tab-sep">|</span>
-    <a class="tab" id="tab-play" href="Play.html" style="text-decoration:none;">Play</a>
+    <a class="tab" id="tab-play" href="/travel-tiles/play.html" style="text-decoration:none;">Play</a>
     <span class="tab-sep">|</span>
-    <a class="tab active" id="tab-compose" href="Studio.html" style="text-decoration:none;">Studio</a>
+    <a class="tab active" id="tab-compose" href="/travel-tiles/studio.html" aria-current="page" style="text-decoration:none;">Studio</a>
     <span class="tab-sep">|</span>
-    <a class="tab" id="tab-generate" href="Shop.html" style="text-decoration:none;">Shop</a>
+    <a class="tab" id="tab-generate" href="/travel-tiles/shop.html" style="text-decoration:none;">Shop</a>
   </div>
-  <button class="nav-cta" id="cta-export">Export ↓</button>
+  <div class="nav-actions">
+    <a class="parent-link" href="/" aria-label="Back to Code & Craft">Code &amp; Craft ↗</a>
+    <button class="nav-cta" id="cta-export">Export ↓</button>
+  </div>
 </nav>
 
 <section id="view-compose">
