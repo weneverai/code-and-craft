@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Code & Craft — Generative Art Systems</title>
-  <meta name="description" content="Code & Craft is a generative art studio making playful systems, physical editions, workshops, and installations from code, craft, place, sound, and material traditions." />
+  <title>Code &amp; Craft — Expressive Computation &amp; Physical Making</title>
+  <meta name="description" content="Code & Craft is a studio for expressive computation, generative craft, and hands-on learning — offering public workshops for makers and STEAM learning systems for institutions." />
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -810,6 +810,32 @@
       }
     }
 
+
+    /* CTA balance patch for homepage STEAM direction */
+    .actions { align-items: stretch; }
+    .actions .btn {
+      min-width: 220px;
+      min-height: 48px;
+      text-align: center;
+      padding-inline: 22px;
+      white-space: normal;
+    }
+
+    @media (max-width: 900px) {
+      .actions {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0,1fr));
+        width: min(100%, 520px);
+      }
+      .actions .btn { min-width: 0; width: 100%; }
+      .hero .actions { margin-inline: 0; }
+    }
+
+    @media (max-width: 560px) {
+      .actions { grid-template-columns: 1fr; width: 100%; }
+      .actions .btn { min-height: 50px; }
+    }
+
     @media (max-width: 1180px) {
       .hero-inner, .about-grid { grid-template-columns: 1fr; }
       .system-window { max-width: 520px; }
@@ -870,15 +896,29 @@
       .experience-card-marquee-track { animation: none; }
       .thread-ring { animation: none; }
     }
+  
+    /* Audience doors: makers first, institutions second */
+    .audience-doors { background: var(--cream,#f7f2e7); color: var(--ink,#17140f); padding: 84px 26px 98px; border-bottom: 1px solid rgba(23,20,15,.12); }
+    .door-grid { margin-top: 34px; display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 18px; }
+    .door-card { min-height: 360px; border: 1px solid rgba(23,20,15,.14); border-radius: 36px; background: rgba(255,250,240,.72); padding: clamp(28px,4vw,46px); display: flex; flex-direction: column; box-shadow: 0 14px 40px rgba(23,20,15,.045); }
+    .door-card .mini { font: 500 10px/1 var(--mono,"IBM Plex Mono",monospace); letter-spacing: .16em; text-transform: uppercase; color: rgba(23,20,15,.52); margin-bottom: 18px; }
+    .door-card h2 { font-size: clamp(44px,5vw,76px); line-height: .88; letter-spacing: -.09em; font-weight: 600; margin-bottom: 18px; }
+    .door-card h2 em { font-family: var(--serif,"Instrument Serif",Georgia,serif); font-style: italic; font-weight: 400; color: var(--orange,#ff4a1f); letter-spacing: -.02em; }
+    .door-card p { color: rgba(23,20,15,.66); font-size: 17px; line-height: 1.52; max-width: 58ch; }
+    .door-points { display: grid; gap: 8px; margin: 22px 0 28px; color: rgba(23,20,15,.68); font: 500 11px/1.45 var(--mono,"IBM Plex Mono",monospace); letter-spacing: .08em; text-transform: uppercase; }
+    .door-card .actions { margin-top: auto; }
+    @media (max-width:840px){ .door-grid{grid-template-columns:1fr;} .door-card{min-height:auto;} }
+
   </style>
 </head>
 
 <body data-theme="dark">
+  <!-- Code & Craft logo wired: chip O + thread ampersand + subtle craft loom lines -->
   <a class="skip-link" href="#main">Skip to main content</a>
   <div class="grain"></div>
 
   <header>
-    <a class="brand" href="#top">Code <span class="amp">&</span> <span class="craft">Craft</span></a>
+    <a class="brand" href="/">Code <span class="amp">&amp;</span> <span class="craft">Craft</span></a>
     <nav>
       <a href="#work">Work</a>
       <a href="#experiences">Experiences</a>
@@ -894,13 +934,13 @@
 
       <div class="hero-inner">
         <div>
-          <div class="label">Generative art · crafted systems · physical editions</div>
+          <div class="label">Expressive computation · generative craft · physical making</div>
           <div class="wordmark">Code<span class="amp">&</span>Craft</div>
-          <h1>A living studio where <em>code learns craft</em> and craft pushes back.</h1>
-          <p>We build generative art systems that turn sound, place, textiles, tiles, archives, and material experiments into playful tools, physical objects, workshops, and installations.</p>
+          <h1>A studio for digital tools that <em>leave the screen.</em></h1>
+          <p>Code & Craft builds workshops, browser-based tools, and physical studies for people who want to understand how pattern, code, AI, and materials think together.</p>
           <div class="actions">
-            <a class="btn primary" href="#work">Enter the systems</a>
-            <a class="btn ghost" href="#experiences">View experiences</a>
+            <a class="btn primary" href="/education/#makers">Join a workshop</a>
+            <a class="btn ghost" href="/education/#institutions">Plan a program</a>
           </div>
         </div>
 
@@ -953,11 +993,36 @@
       </div>
     </section>
 
+    <section class="audience-doors" id="paths" data-theme="light">
+      <div class="inner">
+        <div class="kicker">Choose your path</div>
+        <h2 class="section-title">One studio, two ways to enter.</h2>
+        <p class="lede">The same Code & Craft method works for public workshops and institutional learning. Makers come to learn by doing. Schools and museums partner to bring the method into their own learning spaces.</p>
+        <div class="door-grid">
+          <article class="door-card" id="makers">
+            <div class="mini">For makers</div>
+            <h2>Public <em>workshops.</em></h2>
+            <p>Weekend intensives, online cohorts, and studio sessions for designers, artists, coders, educators, ceramicists, textile people, and curious adults who want generative tools to become physical work.</p>
+            <div class="door-points"><span>Algorithmic Loom</span><span>Travel Tiles Studio</span><span>Light, sound, fold, and plotter labs</span></div>
+            <div class="actions"><a class="btn dark" href="/education/#makers">See maker workshops</a></div>
+          </article>
+          <article class="door-card" id="institutions">
+            <div class="mini">For institutions</div>
+            <h2>STEAM <em>programs.</em></h2>
+            <p>Custom learning systems for schools, museums, libraries, universities, and cultural organizations — connecting pattern recognition, creative coding, AI literacy, and hands-on making.</p>
+            <div class="door-points"><span>Museum family days</span><span>K–12 and library programs</span><span>Teacher PD and university seminars</span></div>
+            <div class="actions"><a class="btn light" href="/education/#institutions">Plan a program</a></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+
     <section class="cream series-section" id="work" data-theme="light">
       <div class="inner">
-        <div class="kicker">What we make</div>
-        <h2 class="section-title">A studio of generative art systems.</h2>
-        <p class="lede">Each series starts with a source — a sound, city, archive, field note, craft logic, or material experiment — and turns it into something people can explore, play with, and collect.</p>
+        <div class="kicker">What learners make</div>
+        <h2 class="section-title">A studio of expressive computation, generative craft, and hands-on learning.</h2>
+        <p class="lede">Each series starts with a structure — a pattern, sound, color system, fold, circuit, material, or cultural artifact — and turns it into something learners can explore digitally, build physically, and explain in their own words.</p>
 
         <div class="series-divider-grid">
           <article class="series-divider-item">
@@ -966,7 +1031,7 @@
               <svg viewBox="0 0 320 180"><rect width="320" height="180" fill="#fffaf0"/><g transform="translate(64,35)"><rect width="192" height="110" rx="18" fill="#bdf1ec" opacity=".72"/><g stroke="#17140f" stroke-width="3" opacity=".48"><path d="M14 20H178 M14 42H178 M14 64H178 M14 86H178 M14 108H178"/><path d="M32 12V114 M66 12V114 M100 12V114 M134 12V114 M168 12V114"/></g><path d="M16 92C52 18 82 24 110 92S164 166 178 28" fill="none" stroke="#ff4a1f" stroke-width="8" stroke-linecap="round"/></g></svg>
             </div>
             <h3>Vibeweaving</h3>
-            <p>Generative textile systems from sound, color, field research, and cultural memory.</p>
+            <p>Grids, arrays, rhythm, and textile logic translated into generative pattern and hands-on making.</p>
             <a class="text-link" href="https://vibeweaving.com/" target="_blank" rel="noopener">Enter series ↗</a>
           </article>
 
@@ -976,7 +1041,7 @@
               <svg viewBox="0 0 320 180"><rect width="320" height="180" fill="#fffaf0"/><g transform="translate(160,90)"><rect x="-52" y="-52" width="104" height="104" rx="14" fill="#f7f2e7" stroke="#17140f" stroke-width="3"/><polygon points="0,-42 13,-16 42,-16 20,6 28,35 0,20 -28,35 -20,6 -42,-16 -13,-16" fill="#1f4a8f"/><circle r="9" fill="#ff4a1f"/></g></svg>
             </div>
             <h3>Travel Tiles</h3>
-            <p>A digital museum and studio for tile traditions, city patterns, and traceable objects.</p>
+            <p>A visual grammar lab for color, symmetry, geometry, cultural pattern recognition, and tile-making.</p>
             <a class="text-link" href="/travel-tiles/">Enter series →</a>
           </article>
 
@@ -986,7 +1051,7 @@
               <svg viewBox="0 0 320 180"><rect width="320" height="180" fill="#17140f"/><g transform="translate(106,36)"><rect width="108" height="108" rx="18" fill="#3024c8"/><circle cx="28" cy="28" r="11" fill="#bdf1ec"/><circle cx="54" cy="28" r="11" fill="#ff4a1f"/><circle cx="80" cy="28" r="11" fill="#d6a33f"/><circle cx="28" cy="54" r="11" fill="#487c5a"/><circle cx="54" cy="54" r="11" fill="#bdf1ec"/><circle cx="80" cy="54" r="11" fill="#ee7da7"/><circle cx="28" cy="80" r="11" fill="#d6a33f"/><circle cx="54" cy="80" r="11" fill="#487c5a"/><circle cx="80" cy="80" r="11" fill="#ff4a1f"/></g></svg>
             </div>
             <h3>Light Studies</h3>
-            <p>Glowing objects, LED frames, and responsive light works built from pattern systems.</p>
+            <p>Circuit, sequence, timing, and rhythm studies where coded patterns become physical light.</p>
             <a class="text-link" href="#experiences">View direction →</a>
           </article>
 
@@ -996,7 +1061,7 @@
               <svg viewBox="0 0 320 180"><rect width="320" height="180" fill="#fffaf0"/><g transform="translate(160 98)"><path d="M-78 44 L0 -64 L78 44 Z" fill="#bdf1ec" stroke="#17140f" stroke-width="3"/><path d="M0 -64 L0 44 L-78 44 Z" fill="#f7f2e7" stroke="#17140f" stroke-width="3"/><path d="M0 -64 L30 44 L78 44 Z" fill="#d6a33f" stroke="#17140f" stroke-width="3"/><path d="M0 -64 L-30 44 L0 44 Z" fill="#ff4a1f" opacity=".78"/></g></svg>
             </div>
             <h3>Fold Studies</h3>
-            <p>Origami, paper, and fold-based experiments for sculptural objects, packaging, and workshops.</p>
+            <p>Paper engineering and spatial reasoning studies that turn flat rules into physical structure.</p>
             <a class="text-link" href="#experiences">See future →</a>
           </article>
         </div>
@@ -1005,22 +1070,22 @@
 
     <section class="blue how" data-theme="dark">
       <div class="inner">
-        <div class="kicker">How it works</div>
-        <h2 class="section-title">From signal to <em>object.</em></h2>
-        <p class="lede">The work keeps a relationship to where it came from, how it was generated, and what it becomes.</p>
+        <div class="kicker">Learning method</div>
+        <h2 class="section-title">From screen to <em>hand.</em></h2>
+        <p class="lede">The method keeps digital tools accountable to real-world structure, material behavior, and human judgment.</p>
 
         <div class="how-grid">
           <article class="how-step">
             <div class="num">01 · Source</div>
-            <div><h3>Begin <em>somewhere.</em></h3><p>A place, sound, archive, tradition, textile structure, or field note becomes the starting point.</p></div>
+            <div><h3>Read the <em>structure.</em></h3><p>Students observe pattern, color, rhythm, symmetry, circuit behavior, material limits, and cultural context.</p></div>
           </article>
           <article class="how-step">
             <div class="num">02 · System</div>
-            <div><h3>Build a <em>grammar.</em></h3><p>Code turns the source into rules for pattern, color, rhythm, form, motion, or material behavior.</p></div>
+            <div><h3>Compose a <em>rule.</em></h3><p>Learners use code, p5.js, grids, prompts, or parametric tools to create systems with visible logic.</p></div>
           </article>
           <article class="how-step">
             <div class="num">03 · Object</div>
-            <div><h3>Make it <em>tangible.</em></h3><p>The system becomes a tile, textile, print, light work, workshop, installation, or edition.</p></div>
+            <div><h3>Test it <em>physically.</em></h3><p>The digital output becomes a tile, folded object, LED study, print, woven grid, zine, or class exhibition.</p></div>
           </article>
         </div>
       </div>
@@ -1028,17 +1093,17 @@
 
     <section class="cream ready" id="live" data-theme="light">
       <div class="inner">
-        <div class="kicker">Try one now</div>
-        <h2 class="section-title">Two live systems, <em>ready to play.</em></h2>
-        <p class="lede">The fastest way to feel the studio is to use it. Both systems are live in your browser — open one, make a thing, take it home.</p>
+        <div class="kicker">Live learning systems</div>
+        <h2 class="section-title">Two systems, <em>ready to learn by making.</em></h2>
+        <p class="lede">The fastest way to understand the method is to use it. Open a system, change the rules, read the pattern, and imagine how it becomes a physical artifact.</p>
 
         <div class="live-duo">
           <article class="live-card">
             <div class="live-canvas"><div id="vibe-p5"></div></div>
             <div class="live-copy">
               <span class="small-num">Series 01 · Live</span>
-              <h3>Compose with sound &amp; thread.</h3>
-              <p>Vibeweaving turns sound and field signals into a textile draft, with provenance carried inside the cloth. The algorithmic loom — yours to operate in a browser.</p>
+              <h3>Compose with sound, grid, and thread.</h3>
+              <p>Vibeweaving introduces arrays, rhythm, color extraction, and textile logic through a browser-based pattern system that can move toward paper, thread, print, or light.</p>
               <div class="tags"><span>Web studio</span><span>Audio input</span><span>Export draft</span><span>Edition order</span></div>
               <div class="live-actions">
                 <a class="btn dark" href="https://vibeweaving.com/" target="_blank" rel="noopener">Launch Studio ↗</a>
@@ -1051,8 +1116,8 @@
             <div class="live-canvas"><div id="tile-p5"></div></div>
             <div class="live-copy">
               <span class="small-num">Series 02 · Live</span>
-              <h3>Play, design, then fire it in clay.</h3>
-              <p>Travel Tiles is four connected rooms: a playable atlas of tile traditions, a parametric studio, a layer-matching game, and a shop where your tile becomes a real ceramic object.</p>
+              <h3>Read, design, then make it in clay.</h3>
+              <p>Travel Tiles teaches color composition, symmetry, motif zones, and cultural context through a playable atlas, a composition studio, and a pathway from digital tile to physical ceramic object.</p>
               <div class="tags"><span>Museum</span><span>Studio</span><span>Play</span><span>Shop</span></div>
               <div class="live-actions">
                 <a class="btn dark" href="/travel-tiles/">Enter the Museum →</a>
@@ -1067,72 +1132,72 @@
 
     <section class="cream experiences" id="experiences" data-theme="light">
       <div class="inner">
-        <div class="kicker">Product experiences</div>
-        <h2 class="section-title">A company of experiences, not a single website.</h2>
-        <p class="lede">Each system can become a digital tool, physical edition, workshop, or partner project.</p>
+        <div class="kicker">Program formats</div>
+        <h2 class="section-title">A platform of learning systems, not a single workshop.</h2>
+        <p class="lede">Each system can become a classroom activity, museum program, after-school series, physical kit, or partner learning experience.</p>
 
         <div class="experience-card-marquee-shell" aria-label="Code and Craft experience categories">
           <div class="experience-card-marquee-track">
             <a class="experience-marquee-card" href="/travel-tiles/">
               <span class="small-num">01</span>
-              <h3>Digital Systems</h3>
-              <p>Playable tools, generative studios, and living archives.</p>
+              <h3>Digital Learning Systems</h3>
+              <p>Browser-based studios for pattern recognition, color, rhythm, structure, and creative coding.</p>
               <div class="mini-tags"><span>Museum</span><span>Atlas</span><span>Studio</span><span>Play</span></div>
                           <span class="card-go">Enter Travel Tiles →</span>
             </a>
 
             <a class="experience-marquee-card" href="/travel-tiles/shop.html">
               <span class="small-num">02</span>
-              <h3>Physical Editions</h3>
-              <p>Ceramic tiles, woven textiles, prints, and light panels — generated from the systems and traceable to their source.</p>
+              <h3>Physical Making Kits</h3>
+              <p>Tiles, paper folds, LED studies, prints, woven grids, and zines that bring digital rules into the hand.</p>
               <div class="mini-tags"><span>Tiles</span><span>Textiles</span><span>Light</span><span>Paper</span></div>
                           <span class="card-go">View editions →</span>
             </a>
 
             <a class="experience-marquee-card" href="/education/">
               <span class="small-num">03</span>
-              <h3>Workshops</h3>
-              <p>Sessions where people turn places, sounds, and patterns into generative objects.</p>
+              <h3>STEAM Workshops</h3>
+              <p>Sessions where learners turn patterns, sounds, colors, circuits, and folds into digital and physical studies.</p>
               <div class="mini-tags"><span>Sound to Pattern</span><span>Tile Lab</span><span>Fold Lab</span></div>
                           <span class="card-go">Education programs →</span>
             </a>
 
             <a class="experience-marquee-card" href="/education/#contact">
               <span class="small-num">04</span>
-              <h3>Partner Projects</h3>
-              <p>Custom systems and editioned outputs for museums, brands, and cultural partners.</p>
+              <h3>School & Museum Programs</h3>
+              <p>Custom learning systems for schools, museums, libraries, creative organizations, and cultural partners.</p>
               <div class="mini-tags"><span>Museums</span><span>Brands</span><span>Education</span><span>Commissions</span></div>
                           <span class="card-go">Co-design with us →</span>
             </a>
 
             <a class="experience-marquee-card" href="/travel-tiles/">
               <span class="small-num">01</span>
-              <h3>Digital Systems</h3>
-              <p>Playable tools, generative studios, and living archives.</p>
+              <h3>Digital Learning Systems</h3>
+              <p>Browser-based studios for pattern recognition, color, rhythm, structure, and creative coding.</p>
               <div class="mini-tags"><span>Museum</span><span>Atlas</span><span>Studio</span><span>Play</span></div>
                           <span class="card-go">Enter Travel Tiles →</span>
             </a>
 
             <a class="experience-marquee-card" href="/travel-tiles/shop.html">
               <span class="small-num">02</span>
-              <h3>Physical Editions</h3>
-              <p>Ceramic tiles, woven textiles, prints, and light panels — generated from the systems and traceable to their source.</p>
+              <h3>Physical Making Kits</h3>
+              <p>Tiles, paper folds, LED studies, prints, woven grids, and zines that bring digital rules into the hand.</p>
               <div class="mini-tags"><span>Tiles</span><span>Textiles</span><span>Light</span><span>Paper</span></div>
                           <span class="card-go">View editions →</span>
             </a>
 
             <a class="experience-marquee-card" href="/education/">
               <span class="small-num">03</span>
-              <h3>Workshops</h3>
-              <p>Sessions where people turn places, sounds, and patterns into generative objects.</p>
+              <h3>STEAM Workshops</h3>
+              <p>Sessions where learners turn patterns, sounds, colors, circuits, and folds into digital and physical studies.</p>
               <div class="mini-tags"><span>Sound to Pattern</span><span>Tile Lab</span><span>Fold Lab</span></div>
                           <span class="card-go">Education programs →</span>
             </a>
 
             <a class="experience-marquee-card" href="/education/#contact">
               <span class="small-num">04</span>
-              <h3>Partner Projects</h3>
-              <p>Custom systems and editioned outputs for museums, brands, and cultural partners.</p>
+              <h3>School & Museum Programs</h3>
+              <p>Custom learning systems for schools, museums, libraries, creative organizations, and cultural partners.</p>
               <div class="mini-tags"><span>Museums</span><span>Brands</span><span>Education</span><span>Commissions</span></div>
                           <span class="card-go">Co-design with us →</span>
             </a>
@@ -1145,9 +1210,9 @@
       <div class="inner about-grid">
         <h2 class="about-title">Code, craft, and a little bit of <em class="mischief">mischief.</em></h2>
         <div class="about-copy">
-          <p>Founded by Shih-Wen Huang, Code & Craft works across generative systems, cultural memory, textiles, ceramics, sound, light, paper, and physical computing.</p>
-          <p>The studio builds playful systems that make cultural patterns tangible as artworks, objects, workshops, and experiences with a sense of origin.</p>
-          <a class="btn primary" href="mailto:vibe.incubator@gmail.com">Start a collaboration</a>
+          <p>Founded by Shih-Wen Huang, Code & Craft works across generative art, STEAM education, cultural pattern systems, textiles, ceramics, sound, light, paper, circuits, and physical computing.</p>
+          <p>The studio builds playful systems that help learners understand structure through digital tools, hands-on making, cultural context, and reflective authorship.</p>
+          <a class="btn primary" href="mailto:vibe.incubator@gmail.com">Bring this to your school</a>
         </div>
       </div>
     </section>
@@ -1156,7 +1221,7 @@
   <footer>
     <div class="footer-inner">
       <div>© 2026 Code & Craft</div>
-      <div>Generative art from code, craft, place, sound, and material traditions.</div>
+      <div>STEAM learning through pattern, code, craft, sound, light, and physical making.</div>
       <div><a href="mailto:vibe.incubator@gmail.com">Contact</a></div>
     </div>
   </footer>
