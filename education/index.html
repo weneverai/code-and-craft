@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Education — Code & Craft</title>
-  <meta name="description" content="Code & Craft education programs use AI, pattern systems, and physical making to teach human agency, visual grammar, color, math, and slow craft in the age of generative AI." />
+  <title>Education — Code &amp; Craft</title>
+  <meta name="description" content="Code & Craft Education teaches human judgment in the age of generative AI through pattern, code, cultural literacy, and physical making." />
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,7 +23,7 @@
       --gold: #d6a33f;
       --green: #487c5a;
       --pink: #ee7da7;
-      --muted: rgba(23,20,15,.62);
+      --muted: rgba(23,20,15,.64);
       --line: rgba(23,20,15,.14);
       --mono: "IBM Plex Mono", ui-monospace, monospace;
       --sans: "Space Grotesk", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
@@ -40,7 +40,7 @@
       overflow-x: hidden;
     }
     a { color: inherit; text-decoration: none; }
-    canvas { display: block; width: 100%; height: 100%; border: 0; outline: 0; }
+    canvas, svg { display: block; width: 100%; height: 100%; border: 0; outline: 0; }
     ::selection { background: var(--orange); color: white; }
 
     .grain {
@@ -48,7 +48,7 @@
       inset: 0;
       z-index: 999;
       pointer-events: none;
-      opacity: .075;
+      opacity: .07;
       mix-blend-mode: multiply;
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 280 280' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='280' height='280' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E");
     }
@@ -67,8 +67,8 @@
       padding: 0 18px;
       border-radius: 999px;
       color: var(--nav-color, var(--mint));
-      background: var(--nav-bg, rgba(20,14,110,.22));
-      border: 1px solid var(--nav-line, rgba(189,241,236,.18));
+      background: var(--nav-bg, rgba(20,14,110,.24));
+      border: 1px solid var(--nav-line, rgba(189,241,236,.2));
       backdrop-filter: blur(18px);
       box-shadow: 0 12px 40px rgba(0,0,0,.08);
       pointer-events: none;
@@ -85,13 +85,13 @@
 
     body[data-theme="dark"] {
       --nav-color: var(--mint);
-      --nav-muted: rgba(189,241,236,.76);
+      --nav-muted: rgba(189,241,236,.78);
       --nav-bg: rgba(20,14,110,.22);
       --nav-line: rgba(189,241,236,.18);
       --logo-accent: white;
     }
 
-    header a { pointer-events: auto; }
+    header a, header button { pointer-events: auto; }
 
     .brand {
       font-size: 23px;
@@ -153,7 +153,7 @@
     }
 
     .blue .kicker,
-    .hero .kicker { color: rgba(189,241,236,.74); }
+    .hero .label { color: rgba(189,241,236,.76); }
 
     .section-title {
       max-width: 1120px;
@@ -177,21 +177,23 @@
       font-size: clamp(19px, 1.9vw, 25px);
       line-height: 1.38;
       letter-spacing: -.043em;
-      color: rgba(23,20,15,.62);
+      color: rgba(23,20,15,.64);
     }
 
-    .blue .lede { color: rgba(255,255,255,.68); }
+    .blue .lede { color: rgba(255,255,255,.74); }
 
     .btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      min-height: 46px;
-      padding: 13px 20px;
+      min-height: 48px;
+      min-width: 210px;
+      padding: 13px 22px;
       border-radius: 999px;
       font: 500 11px/1 var(--mono);
       letter-spacing: .08em;
       text-transform: uppercase;
+      text-align: center;
       transition: transform .18s ease, background .18s ease, border-color .18s ease, color .18s ease;
     }
 
@@ -202,16 +204,70 @@
     .btn.ghost:hover { background: rgba(189,241,236,.08); border-color: var(--mint); }
     .btn.dark { background: var(--ink); color: var(--cream); border: 1px solid var(--ink); }
     .btn.light { color: var(--ink); border: 1px solid var(--line); background: rgba(255,255,255,.48); }
-
+    .text-link {
+      display: inline-flex;
+      margin-top: 18px;
+      font: 500 11px/1 var(--mono);
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--blue);
+    }
+    .text-link:hover { color: var(--orange); }
     .actions { display: flex; gap: 12px; flex-wrap: wrap; }
 
+    .skip-link {
+      position: fixed;
+      left: 18px;
+      top: -80px;
+      z-index: 1000;
+      background: var(--mint);
+      color: var(--blue);
+      padding: 12px 16px;
+      border-radius: 999px;
+      font: 500 11px/1 var(--mono);
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      transition: top .18s ease;
+    }
+    .skip-link:focus { top: 18px; outline: 3px solid var(--orange); outline-offset: 3px; }
+    a:focus-visible,
+    button:focus-visible {
+      outline: 3px solid var(--orange);
+      outline-offset: 4px;
+    }
+
+    .motion-toggle {
+      position: fixed;
+      right: 28px;
+      bottom: 28px;
+      z-index: 70;
+      border: 1px solid rgba(189,241,236,.44);
+      background: rgba(20,14,110,.74);
+      color: var(--mint);
+      backdrop-filter: blur(12px);
+      border-radius: 999px;
+      padding: 12px 15px;
+      font: 500 10px/1 var(--mono);
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      box-shadow: 0 12px 34px rgba(0,0,0,.18);
+      cursor: pointer;
+    }
+    .motion-toggle[aria-pressed="true"] {
+      background: var(--mint);
+      color: var(--blue);
+      border-color: var(--mint);
+    }
+
+    /* HERO */
     .hero {
       min-height: 100vh;
       position: relative;
       overflow: hidden;
       color: var(--mint);
       background:
-        radial-gradient(circle at 50% 105%, rgba(255,74,31,.22), transparent 30%),
+        radial-gradient(circle at 50% 105%, rgba(255,74,31,.18), transparent 30%),
+        radial-gradient(circle at 15% 15%, rgba(189,241,236,.10), transparent 30%),
         linear-gradient(135deg, var(--blue), var(--blue-deep));
     }
 
@@ -224,8 +280,8 @@
       z-index: 2;
       pointer-events: none;
       background:
-        radial-gradient(circle at 50% 45%, rgba(48,36,200,.18), transparent 28%),
-        linear-gradient(180deg, rgba(48,36,200,.74), rgba(48,36,200,.58) 44%, rgba(48,36,200,.92));
+        radial-gradient(circle at 50% 45%, rgba(48,36,200,.12), transparent 28%),
+        linear-gradient(180deg, rgba(48,36,200,.76), rgba(48,36,200,.56) 44%, rgba(48,36,200,.94));
     }
 
     .hero-inner {
@@ -246,12 +302,11 @@
       font: 500 11px/1 var(--mono);
       letter-spacing: .18em;
       text-transform: uppercase;
-      color: rgba(189,241,236,.76);
       margin-bottom: 24px;
     }
 
     h1 {
-      max-width: 1120px;
+      max-width: 1160px;
       font-size: clamp(62px, 9.2vw, 156px);
       line-height: .80;
       letter-spacing: -.105em;
@@ -260,15 +315,17 @@
     }
 
     .hero p {
-      max-width: 760px;
+      max-width: 800px;
       font-size: clamp(18px, 1.65vw, 24px);
       line-height: 1.36;
-      color: rgba(189,241,236,.78);
+      color: rgba(189,241,236,.80);
       margin-bottom: 30px;
       letter-spacing: -.03em;
     }
 
-    .hero-band {
+    .hero .actions { justify-content: center; }
+
+    .method-rail {
       width: min(980px, 92vw);
       margin-top: 42px;
       border: 1px solid rgba(189,241,236,.28);
@@ -281,21 +338,96 @@
       box-shadow: 0 24px 80px rgba(0,0,0,.14);
     }
 
-    .hero-band span {
-      min-height: 76px;
+    .method-rail span {
+      min-height: 64px;
       display: flex;
       align-items: center;
       justify-content: center;
+      gap: 8px;
       border-right: 1px solid rgba(189,241,236,.16);
       font: 500 11px/1 var(--mono);
-      letter-spacing: .12em;
+      letter-spacing: .10em;
       text-transform: uppercase;
-      color: rgba(189,241,236,.84);
+      color: rgba(189,241,236,.88);
+      white-space: nowrap;
     }
-    .hero-band span:last-child { border-right: 0; }
-    .hero-band span:nth-child(2),
-    .hero-band span:nth-child(4) { color: white; }
 
+    .method-rail span:last-child { border-right: 0; }
+    .method-rail b { font-weight: 500; color: var(--orange); letter-spacing: .04em; }
+    .method-rail span:nth-child(3) { color: #fffaf0; background: rgba(255,255,255,.035); }
+
+    /* ENTRY PATHS */
+    .entry-section { padding-top: 90px; padding-bottom: 96px; }
+    .entry-head {
+      display: grid;
+      grid-template-columns: 1fr .78fr;
+      gap: 48px;
+      align-items: end;
+      margin-bottom: 44px;
+    }
+
+    .entry-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .entry-card {
+      min-height: 430px;
+      border: 1px solid rgba(23,20,15,.14);
+      border-radius: 38px;
+      background: rgba(255,250,240,.76);
+      padding: clamp(30px, 4.6vw, 52px);
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 16px 44px rgba(23,20,15,.05);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .entry-card::after {
+      content: "";
+      position: absolute;
+      inset: auto -12% -24% auto;
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      background: rgba(189,241,236,.42);
+      pointer-events: none;
+    }
+    .entry-card.org::after { background: rgba(255,74,31,.16); }
+
+    .entry-card .mini {
+      font: 500 10px/1 var(--mono);
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: rgba(23,20,15,.52);
+      margin-bottom: 18px;
+    }
+
+    .entry-card h2 {
+      max-width: 650px;
+      font-size: clamp(46px, 5.5vw, 82px);
+      line-height: .86;
+      letter-spacing: -.092em;
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+    .entry-card h2 em { font-family: var(--serif); font-style: italic; color: var(--orange); font-weight: 400; letter-spacing: -.02em; }
+    .entry-card p { color: rgba(23,20,15,.66); font-size: 17px; line-height: 1.52; max-width: 62ch; }
+
+    .entry-points {
+      display: grid;
+      gap: 9px;
+      margin: 24px 0 30px;
+      color: rgba(23,20,15,.68);
+      font: 500 11px/1.45 var(--mono);
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+    .entry-card .actions { margin-top: auto; position: relative; z-index: 2; }
+
+    /* THESIS */
     .thesis-grid {
       display: grid;
       grid-template-columns: 1.05fr .95fr;
@@ -331,7 +463,7 @@
       font: 500 10px/1 var(--mono);
       letter-spacing: .14em;
       text-transform: uppercase;
-      color: var(--orange);
+      color: var(--green);
       margin-bottom: 8px;
     }
 
@@ -344,6 +476,7 @@
 
     .proof p { color: var(--muted); font-size: 15px; line-height: 1.48; }
 
+    /* PRACTICES */
     .practice-grid {
       margin-top: 46px;
       display: grid;
@@ -354,7 +487,6 @@
 
     .practice {
       min-height: 430px;
-      padding: 0;
       border-right: 1px solid rgba(23,20,15,.14);
       position: relative;
       overflow: hidden;
@@ -413,6 +545,10 @@
       color: rgba(23,20,15,.58);
     }
 
+    /* FLAGSHIP */
+    .flagship {
+      padding-top: 92px;
+    }
     .travel-lab {
       margin-top: 42px;
       border-radius: 38px;
@@ -421,12 +557,13 @@
       background: var(--paper);
       display: grid;
       grid-template-columns: .9fr 1.1fr;
-      min-height: 430px;
+      min-height: 460px;
+      box-shadow: 0 18px 48px rgba(23,20,15,.05);
     }
 
     .travel-lab-visual {
       position: relative;
-      min-height: 430px;
+      min-height: 460px;
       background: var(--blue);
     }
 
@@ -443,7 +580,7 @@
       font:500 10px/1 var(--mono);
       letter-spacing:.16em;
       text-transform:uppercase;
-      color:var(--orange);
+      color:var(--green);
       margin-bottom:18px;
     }
 
@@ -455,9 +592,79 @@
     }
 
     .travel-lab-copy h3 em { font-family:var(--serif); color:var(--orange); font-weight:400; }
+    .travel-lab-copy p { color:var(--muted); line-height:1.55; font-size:17px; max-width:64ch; }
 
-    .travel-lab-copy p { color:var(--muted); line-height:1.55; font-size:17px; max-width:60ch; }
+    .version-grid {
+      margin-top: 28px;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+    }
+    .version-card {
+      border: 1px solid rgba(23,20,15,.12);
+      border-radius: 20px;
+      padding: 16px;
+      background: rgba(247,242,231,.56);
+    }
+    .version-card strong {
+      display:block;
+      font: 500 10px/1 var(--mono);
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      color: var(--orange);
+      margin-bottom: 8px;
+    }
+    .version-card p { font-size: 14px; line-height: 1.45; }
 
+    /* BOOKABLE FORMATS */
+    .bookable-grid {
+      margin-top: 44px;
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .bookable-card {
+      min-height: 320px;
+      border: 1px solid rgba(23,20,15,.14);
+      border-radius: 30px;
+      background: rgba(255,250,240,.70);
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .bookable-card .type {
+      font: 500 10px/1 var(--mono);
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 14px;
+    }
+
+    .bookable-card h3 {
+      font-size: 30px;
+      line-height: .94;
+      letter-spacing: -.07em;
+      margin-bottom: 12px;
+    }
+
+    .bookable-card p {
+      color: var(--muted);
+      font-size: 14.5px;
+      line-height: 1.48;
+    }
+
+    .bookable-card .detail {
+      margin-top: auto;
+      padding-top: 18px;
+      color: rgba(23,20,15,.58);
+      font: 500 10px/1.55 var(--mono);
+      letter-spacing:.08em;
+      text-transform:uppercase;
+    }
+
+    /* PARTNERS */
     .format-grid {
       margin-top: 44px;
       display: grid;
@@ -479,7 +686,7 @@
       font: 500 10px/1 var(--mono);
       letter-spacing: .16em;
       text-transform: uppercase;
-      color: rgba(189,241,236,.74);
+      color: rgba(189,241,236,.78);
       margin-bottom: 18px;
     }
 
@@ -492,7 +699,7 @@
     }
 
     .format-card p {
-      color: rgba(255,255,255,.66);
+      color: rgba(255,255,255,.76);
       font-size: 15px;
       line-height: 1.52;
     }
@@ -506,6 +713,7 @@
       color: var(--mint);
     }
 
+    /* SYSTEMS */
     .systems-grid {
       margin-top: 46px;
       display: grid;
@@ -542,7 +750,7 @@
       font: 500 10px/1 var(--mono);
       letter-spacing: .14em;
       text-transform: uppercase;
-      color: var(--orange);
+      color: var(--green);
       margin-bottom: 12px;
     }
 
@@ -564,19 +772,62 @@
       color:var(--blue);
     }
 
+    /* WHY */
+    .why-grid {
+      margin-top: 44px;
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      border-top: 1px solid rgba(23,20,15,.14);
+      border-bottom: 1px solid rgba(23,20,15,.14);
+    }
+    .why-item {
+      min-height: 250px;
+      padding: 24px 20px;
+      border-right: 1px solid rgba(23,20,15,.14);
+      background: rgba(255,250,240,.50);
+    }
+    .why-item:last-child { border-right: 0; }
+    .why-item span {
+      display:block;
+      font: 500 10px/1 var(--mono);
+      letter-spacing:.16em;
+      text-transform:uppercase;
+      color: var(--orange);
+      margin-bottom: 18px;
+    }
+    .why-item h3 {
+      font-size: 29px;
+      line-height:.96;
+      letter-spacing:-.065em;
+      margin-bottom: 12px;
+    }
+    .why-item p { color: var(--muted); font-size: 14.5px; line-height:1.48; }
+
+    /* CONTACT */
     .contact-panel {
       border-radius: 42px;
       padding: clamp(34px, 6vw, 72px);
       background:
-        radial-gradient(circle at 84% 20%, rgba(255,74,31,.22), transparent 24%),
+        radial-gradient(circle at 84% 20%, rgba(255,74,31,.18), transparent 24%),
+        radial-gradient(circle at 14% 88%, rgba(189,241,236,.12), transparent 26%),
         linear-gradient(135deg, var(--blue), var(--blue-deep));
       color: var(--mint);
       overflow: hidden;
       position: relative;
     }
 
+    .contact-panel .kicker {
+      color: #fffaf0;
+      background: rgba(255,255,255,.10);
+      border: 1px solid rgba(255,255,255,.20);
+      border-radius: 999px;
+      width: fit-content;
+      padding: 8px 12px;
+      margin-bottom: 24px;
+    }
+
     .contact-panel .section-title { color: var(--mint); max-width: 980px; }
-    .contact-panel .lede { color: rgba(189,241,236,.76); }
+    .contact-panel .lede { color: rgba(255,255,255,.82); }
     .contact-panel .actions { margin-top: 28px; }
 
     .contact-columns {
@@ -587,18 +838,18 @@
     }
 
     .note-card {
-      border: 1px solid rgba(189,241,236,.24);
-      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.18);
+      background: rgba(255,255,255,.075);
       border-radius: 28px;
       padding: 24px;
-      color: rgba(189,241,236,.72);
+      color: rgba(255,255,255,.82);
       font-size: 15px;
       line-height: 1.55;
     }
 
     .note-card strong {
       display: block;
-      color: var(--mint);
+      color: #fffaf0;
       font:500 10px/1 var(--mono);
       letter-spacing:.14em;
       text-transform:uppercase;
@@ -622,58 +873,6 @@
       gap: 24px;
     }
 
-    .skip-link {
-      position: fixed;
-      left: 18px;
-      top: -80px;
-      z-index: 1000;
-      background: var(--mint);
-      color: var(--blue);
-      padding: 12px 16px;
-      border-radius: 999px;
-      font: 500 11px/1 var(--mono);
-      letter-spacing: .08em;
-      text-transform: uppercase;
-      transition: top .18s ease;
-    }
-    .skip-link:focus { top: 18px; outline: 3px solid var(--orange); outline-offset: 3px; }
-    a:focus-visible,
-    button:focus-visible {
-      outline: 3px solid var(--orange);
-      outline-offset: 4px;
-    }
-    .motion-toggle {
-      position: fixed;
-      right: 28px;
-      bottom: 28px;
-      z-index: 70;
-      border: 1px solid rgba(189,241,236,.44);
-      background: rgba(20,14,110,.72);
-      color: var(--mint);
-      backdrop-filter: blur(12px);
-      border-radius: 999px;
-      padding: 12px 15px;
-      font: 500 10px/1 var(--mono);
-      letter-spacing: .1em;
-      text-transform: uppercase;
-      box-shadow: 0 12px 34px rgba(0,0,0,.18);
-    }
-    .motion-toggle[aria-pressed="true"] {
-      background: var(--mint);
-      color: var(--blue);
-      border-color: var(--mint);
-    }
-    .sr-only {
-      position: absolute;
-      width: 1px;
-      height: 1px;
-      padding: 0;
-      margin: -1px;
-      overflow: hidden;
-      clip: rect(0,0,0,0);
-      white-space: nowrap;
-      border: 0;
-    }
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
       *, *::before, *::after {
@@ -684,11 +883,29 @@
     }
 
     @media (max-width: 1180px) {
-      .thesis-grid, .contact-columns, .travel-lab { grid-template-columns: 1fr; }
+      .entry-head, .thesis-grid, .travel-lab, .contact-columns { grid-template-columns: 1fr; }
       .practice-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
       .practice:nth-child(2), .practice:nth-child(4) { border-right: 0; }
       .practice:nth-child(-n+4) { border-bottom: 1px solid rgba(23,20,15,.14); }
-      .format-grid, .systems-grid { grid-template-columns: 1fr 1fr; }
+      .format-grid, .systems-grid, .bookable-grid { grid-template-columns: 1fr 1fr; }
+      .why-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .why-item { border-bottom: 1px solid rgba(23,20,15,.14); }
+      .why-item:nth-child(2n) { border-right: 0; }
+    }
+
+    @media (max-width: 900px) {
+      .method-rail {
+        grid-template-columns: repeat(5, minmax(max-content, 1fr));
+        overflow-x: auto;
+        border-radius: 999px;
+        scrollbar-width: none;
+      }
+      .method-rail::-webkit-scrollbar { display: none; }
+      .method-rail span { min-width: 145px; min-height: 58px; padding-inline: 16px; }
+      .entry-grid, .version-grid { grid-template-columns: 1fr; }
+      .actions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); width: min(100%, 520px); }
+      .actions .btn { width: 100%; min-width: 0; }
+      .hero .actions { margin-inline: auto; }
     }
 
     @media (max-width: 760px) {
@@ -708,20 +925,21 @@
         overflow-x: auto;
         padding-bottom: 2px;
       }
-      nav a {
-        min-width: auto;
-        padding: 10px 12px;
-        white-space: nowrap;
-      }
+      nav a { min-width: auto; padding: 10px 12px; white-space: nowrap; }
       section { padding: 78px 20px; }
       .hero-inner { padding: 126px 20px 76px; }
-      .hero-band { grid-template-columns: 1fr; border-radius: 28px; }
-      .hero-band span { min-height: 54px; border-right: 0; border-bottom: 1px solid rgba(189,241,236,.16); }
-      .hero-band span:last-child { border-bottom: 0; }
-      .practice-grid, .format-grid, .systems-grid { grid-template-columns: 1fr; }
-      .practice { border-right: 0; border-bottom: 1px solid rgba(23,20,15,.14); }
-      .practice:last-child { border-bottom: 0; }
+      .practice-grid, .format-grid, .systems-grid, .bookable-grid, .why-grid { grid-template-columns: 1fr; }
+      .practice, .why-item { border-right: 0; border-bottom: 1px solid rgba(23,20,15,.14); }
+      .practice:last-child, .why-item:last-child { border-bottom: 0; }
       .footer-inner { flex-direction: column; }
+      .motion-toggle { right: 16px; bottom: 16px; }
+    }
+
+    @media (max-width: 560px) {
+      .actions { grid-template-columns: 1fr; width: 100%; }
+      .actions .btn { min-height: 50px; }
+      .method-rail { width: 100%; border-radius: 24px; }
+      .method-rail span { min-width: 132px; justify-content: flex-start; }
     }
   </style>
 </head>
@@ -729,11 +947,10 @@
 <body data-theme="dark">
   <a class="skip-link" href="#main">Skip to main content</a>
   <div class="grain"></div>
-
   <button class="motion-toggle" id="motion-toggle" type="button" aria-pressed="false">Pause motion</button>
 
   <header>
-    <a class="brand" href="/">Code <span class="amp">&</span> <span class="craft">Craft</span></a>
+    <a class="brand" href="/">Code <span class="amp">&amp;</span> <span class="craft">Craft</span></a>
     <nav>
       <a href="/#work">Work</a>
       <a href="/#experiences">Experiences</a>
@@ -748,20 +965,59 @@
       <div id="hero-p5" aria-hidden="true"></div>
 
       <div class="hero-inner">
-        <div class="label">Education · learning systems · human-AI agency</div>
+        <div class="label">Education · AI agency · pattern systems · slow making</div>
         <h1>Slow making for the age of <em>GenAI.</em></h1>
-        <p>Workshops where AI becomes a thinking partner, not a shortcut. Learners read pattern, question the machine, compose with constraints, make by hand, and reflect on authorship.</p>
+        <p>Code &amp; Craft Education teaches human judgment through pattern, code, cultural literacy, and physical making. AI becomes a thinking partner, not a shortcut.</p>
         <div class="actions">
-          <a class="btn primary" href="#practices">See the practice series</a>
-          <a class="btn ghost" href="#travel-tiles">Travel Tiles Lab</a>
+          <a class="btn primary" href="#individuals">Join a workshop</a>
+          <a class="btn ghost" href="#organizations">Plan a program</a>
+        </div>
+        <a class="text-link" style="color:var(--mint); margin-top:18px;" href="#travel-tiles">Explore Travel Tiles Lab →</a>
+
+        <div class="method-rail" aria-label="Workshop method summary">
+          <span><b>01</b> Read</span>
+          <span><b>02</b> Question</span>
+          <span><b>03</b> Compose</span>
+          <span><b>04</b> Make</span>
+          <span><b>05</b> Reflect</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="cream entry-section" id="paths" data-theme="light">
+      <div class="inner">
+        <div class="entry-head">
+          <div>
+            <div class="kicker">Choose your entry</div>
+            <h2 class="section-title">One learning method, two sales paths.</h2>
+          </div>
+          <p class="lede">Individuals come to make, test, and build a creative practice. Organizations partner to bring AI literacy, cultural pattern systems, and hands-on learning into their own rooms.</p>
         </div>
 
-        <div class="hero-band" aria-label="Workshop learning arc">
-          <span>Read</span>
-          <span>Question</span>
-          <span>Compose</span>
-          <span>Make</span>
-          <span>Reflect</span>
+        <div class="entry-grid">
+          <article class="entry-card" id="individuals">
+            <div class="mini">For individuals</div>
+            <h2>Workshops for adult <em>makers.</em></h2>
+            <p>Weekend intensives, online cohorts, and studio sessions for designers, artists, educators, coders, ceramicists, textile people, and curious adults who want generative tools to become physical work.</p>
+            <div class="entry-points">
+              <span>Travel Tiles Lab</span>
+              <span>Algorithmic Loom / Vibeweaving</span>
+              <span>Light, sound, fold, and plotter studies</span>
+            </div>
+            <div class="actions"><a class="btn dark" href="#bookable">See bookable formats</a></div>
+          </article>
+
+          <article class="entry-card org" id="organizations">
+            <div class="mini">For organizations</div>
+            <h2>Programs for learning <em>spaces.</em></h2>
+            <p>Custom workshops for museums, schools, libraries, universities, cultural organizations, and creative teams — adapted to audience age, collection context, schedule, and outcomes.</p>
+            <div class="entry-points">
+              <span>Museum family days and collection labs</span>
+              <span>K–12 units, library programs, teacher PD</span>
+              <span>University seminars and company AI literacy</span>
+            </div>
+            <div class="actions"><a class="btn light" href="#contact">Plan a program</a></div>
+          </article>
         </div>
       </div>
     </section>
@@ -788,7 +1044,7 @@
       <div class="inner">
         <div class="kicker">Practice series</div>
         <h2 class="section-title">Five practices, one <em>learning arc.</em></h2>
-        <p class="lede">Institutions can choose one practice, combine several, or build a full residency. The thumbnails are intentionally mathematical: symmetry, networks, tessellation, material grids, and reflection loops.</p>
+        <p class="lede">Choose one practice, combine several, or build a full residency. The thumbnails are intentionally mathematical: symmetry, networks, tessellation, material grids, and reflection loops.</p>
 
         <div class="practice-grid">
           <article class="practice">
@@ -837,18 +1093,72 @@
             </div>
           </article>
         </div>
+      </div>
+    </section>
 
-        <div class="travel-lab" id="travel-tiles">
+    <section class="cream flagship" id="travel-tiles" data-theme="light">
+      <div class="inner">
+        <div class="kicker">Flagship program</div>
+        <h2 class="section-title">Travel Tiles Lab is the first <em>sellable system.</em></h2>
+        <p class="lede">A ready workshop series for adults, museums, schools, and cultural programs: visual grammar, color composition, symmetry, cultural provenance, digital play, and physical making.</p>
+
+        <div class="travel-lab">
           <div class="travel-lab-visual"><div id="travel-lab-p5" aria-hidden="true"></div></div>
           <div class="travel-lab-copy">
-            <div class="mini">Featured series · Travel Tiles Lab</div>
+            <div class="mini">Travel Tiles Lab</div>
             <h3>Tile grammar you can <em>play, design,</em> and make.</h3>
-            <p>Travel Tiles is the most ready workshop series: museum-friendly, K–12 adaptable, and grounded in visual grammar, color composition, symmetry, and cultural provenance. The Play mode teaches matching and recognition; the Studio mode lets learners compose; the workshop brings the pattern back into physical material.</p>
+            <p>Play mode teaches matching and recognition. Studio mode lets learners compose. The workshop brings the pattern back into physical material through a card, zine, tile study, wall installation, or small edition.</p>
+            <div class="version-grid">
+              <article class="version-card"><strong>90 minutes</strong><p>Museum or library intro with a digital tile, pattern card, and short reflection.</p></article>
+              <article class="version-card"><strong>Half day / weekend</strong><p>Adult maker intensive with composition, critique, and a physical tile or print study.</p></article>
+              <article class="version-card"><strong>Multi-session</strong><p>School, university, or residency format ending in a showcase, zine, or class exhibition.</p></article>
+            </div>
             <div class="actions" style="margin-top:24px;">
               <a class="btn dark" href="/travel-tiles/">Explore Travel Tiles</a>
               <a class="btn light" href="#contact">Collaborate on a class</a>
             </div>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cream" id="bookable" data-theme="light">
+      <div class="inner">
+        <div class="kicker">Bookable formats</div>
+        <h2 class="section-title">Make the offer easy to <em>buy.</em></h2>
+        <p class="lede">These are the practical containers. Each can be adapted for Travel Tiles, Vibeweaving, light studies, fold studies, or a custom cultural pattern system.</p>
+
+        <div class="bookable-grid">
+          <article class="bookable-card">
+            <div class="type">Intro workshop</div>
+            <h3>90-minute lab.</h3>
+            <p>Fast entry for museums, libraries, community events, and mixed-age groups.</p>
+            <div class="detail">Audience: adults / visitors<br>Output: tile card or mini zine</div>
+          </article>
+          <article class="bookable-card">
+            <div class="type">Adult intensive</div>
+            <h3>Weekend studio.</h3>
+            <p>A deeper format for designers, artists, educators, and makers who want a finished study.</p>
+            <div class="detail">Audience: adult makers<br>Output: tile, print, weave, or light study</div>
+          </article>
+          <article class="bookable-card">
+            <div class="type">School unit</div>
+            <h3>3–5 sessions.</h3>
+            <p>Pattern, math, color, AI literacy, and making across a structured sequence.</p>
+            <div class="detail">Audience: K–12<br>Output: class wall or exhibition</div>
+          </article>
+          <article class="bookable-card">
+            <div class="type">Museum lab</div>
+            <h3>Collection program.</h3>
+            <p>A public or educator-facing program built from a museum collection or exhibition theme.</p>
+            <div class="detail">Audience: museums<br>Output: activity kit / guide</div>
+          </article>
+          <article class="bookable-card">
+            <div class="type">AI literacy offsite</div>
+            <h3>Team session.</h3>
+            <p>A non-corporate way to discuss AI, judgment, authorship, and responsible innovation.</p>
+            <div class="detail">Audience: teams<br>Output: reflection + artifact</div>
+          </article>
         </div>
       </div>
     </section>
@@ -881,7 +1191,7 @@
           <article class="format-card">
             <div class="type">Company / creative team</div>
             <h3>AI literacy through making.</h3>
-            <p>A non-corporate, hands-on way to discuss AI, authorship, constraints, and responsible innovation.</p>
+            <p>A hands-on way to discuss AI, authorship, constraints, and responsible innovation without becoming another slide deck.</p>
             <div class="outcome">Team session · leadership retreat · offsite</div>
           </article>
         </div>
@@ -896,7 +1206,7 @@
 
         <div class="systems-grid">
           <article class="system-card">
-            <div class="system-viz p5-thumb" data-viz="tiles"></div>
+            <div class="system-viz p5-thumb" data-viz="tiles" aria-label="Travel Tiles animated thumbnail"></div>
             <div class="body">
               <div class="meta">Travel Tiles</div>
               <h3>Tile grammar, color, and heritage.</h3>
@@ -905,7 +1215,7 @@
             </div>
           </article>
           <article class="system-card">
-            <div class="system-viz p5-thumb" data-viz="weave"></div>
+            <div class="system-viz p5-thumb" data-viz="weave" aria-label="Vibeweaving animated thumbnail"></div>
             <div class="body">
               <div class="meta">Vibeweaving</div>
               <h3>Textile systems and algorithmic weaving.</h3>
@@ -914,7 +1224,7 @@
             </div>
           </article>
           <article class="system-card">
-            <div class="system-viz p5-thumb" data-viz="future"></div>
+            <div class="system-viz p5-thumb" data-viz="future" aria-label="Future practices animated thumbnail"></div>
             <div class="body">
               <div class="meta">Future practices</div>
               <h3>Light, paper, calligraphy, and place.</h3>
@@ -926,15 +1236,31 @@
       </div>
     </section>
 
+    <section class="cream" id="proof" data-theme="light">
+      <div class="inner">
+        <div class="kicker">Why partners choose this</div>
+        <h2 class="section-title">More than an AI workshop.</h2>
+        <p class="lede">The value is not novelty. The value is a structured way to connect AI literacy, cultural context, and physical making in a room people remember.</p>
+
+        <div class="why-grid">
+          <article class="why-item"><span>01</span><h3>Live tools, not slides.</h3><p>Participants use real browser-based systems that can be modified, played, and documented.</p></article>
+          <article class="why-item"><span>02</span><h3>Physical output.</h3><p>The workshop ends with an artifact: tile card, print, zine, light study, woven grid, or exhibition wall.</p></article>
+          <article class="why-item"><span>03</span><h3>Cultural context.</h3><p>Pattern is taught as place, technique, lineage, and transmission — not just decoration.</p></article>
+          <article class="why-item"><span>04</span><h3>Agency and provenance.</h3><p>Learners document what the machine suggested, what they chose, and what the material changed.</p></article>
+          <article class="why-item"><span>05</span><h3>Adaptable format.</h3><p>The same system can serve adults, museums, K–12, universities, libraries, and creative teams.</p></article>
+        </div>
+      </div>
+    </section>
+
     <section class="cream" id="contact" data-theme="light">
       <div class="inner">
         <div class="contact-panel">
           <div class="kicker">Educational collaboration</div>
-          <h2 class="section-title">Bring Code & Craft into your learning space.</h2>
-          <p class="lede">I am looking for museums, schools, universities, libraries, and creative organizations to co-design the next version of these workshops with real learners and real constraints.</p>
+          <h2 class="section-title">Bring Code &amp; Craft into your learning space.</h2>
+          <p class="lede">I am looking for museums, schools, universities, libraries, adult learning spaces, and creative organizations to co-design the next version of these workshops with real learners and real constraints.</p>
           <div class="actions">
-            <a class="btn primary" href="mailto:vibe.incubator@gmail.com?subject=Educational%20collaboration%20with%20Code%20%26%20Craft&body=Hi%20Wen%2C%0A%0AI%27m%20interested%20in%20a%20Code%20%26%20Craft%20education%20workshop.%0A%0AOrganization%3A%0AAudience%3A%0AFormat%3A%0ATimeline%3A%0ABudget%20range%20if%20known%3A%0A%0AWhat%20we%20hope%20participants%20will%20learn%3A%0A">Email Wen ↗</a>
-            <a class="btn ghost" href="/#work">View the systems</a>
+            <a class="btn primary" href="mailto:vibe.incubator@gmail.com?subject=Educational%20collaboration%20with%20Code%20%26%20Craft&amp;body=Hi%20Wen%2C%0A%0AI%27m%20interested%20in%20a%20Code%20%26%20Craft%20education%20workshop.%0A%0AOrganization%3A%0AAudience%3A%0AFormat%3A%0ATimeline%3A%0ABudget%20range%20if%20known%3A%0A%0AWhat%20we%20hope%20participants%20will%20learn%3A%0A">Email Wen ↗</a>
+            <a class="btn ghost" href="/#work">View the studio work</a>
           </div>
 
           <div class="contact-columns">
@@ -948,14 +1274,13 @@
 
   <footer data-theme="dark">
     <div class="footer-inner">
-      <span>© 2026 Code & Craft</span>
+      <span>© 2026 Code &amp; Craft</span>
       <span>Education through code, craft, agency, and care.</span>
       <span><a href="/">Home</a> · <a href="/travel-tiles/">Travel Tiles</a> · <a href="mailto:vibe.incubator@gmail.com">Contact</a></span>
     </div>
   </footer>
 
   <script>
-    // WCAG 2.2.2: user can pause decorative motion.
     window.__ccMotionPaused = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const motionToggle = document.getElementById("motion-toggle");
     if (motionToggle) {
@@ -997,78 +1322,60 @@
       pink: "#ee7da7"
     };
 
-    // Upgraded Hero P5: Vector warp field that reacts smoothly to mouse vector proximity
-    new p5((p) => {
+    function makeP5(hostId, sketch) {
+      const host = document.getElementById(hostId);
+      if (!host || !window.p5) return;
+      new p5(sketch(host), host);
+    }
+
+    makeP5("hero-p5", (host) => (p) => {
       let t = 0;
       let easeMouseX = 0, easeMouseY = 0;
       p.setup = () => {
-        const host = document.getElementById("hero-p5");
-        const cnv = p.createCanvas(host.offsetWidth, host.offsetHeight);
-        cnv.parent(host);
+        p.createCanvas(host.offsetWidth, host.offsetHeight);
         p.pixelDensity(Math.min(2, window.devicePixelRatio || 1));
         easeMouseX = p.width / 2;
         easeMouseY = p.height / 2;
       };
-      p.windowResized = () => {
-        const host = document.getElementById("hero-p5");
-        p.resizeCanvas(host.offsetWidth, host.offsetHeight);
-      };
+      p.windowResized = () => p.resizeCanvas(host.offsetWidth, host.offsetHeight);
       p.draw = () => {
         p.clear();
         if (!window.__ccMotionPaused) t += 0.0015;
-
-        // Smoothly interpolate mouse coordinates for organic motion tracking
         easeMouseX += (p.mouseX - easeMouseX) * 0.06;
         easeMouseY += (p.mouseY - easeMouseY) * 0.06;
-
         const cx = p.width / 2;
         const cy = p.height / 2;
         const maxR = Math.min(p.width, p.height) * 0.48;
-
         p.push();
         p.translate(cx, cy);
-        
         for (let ring = 1; ring <= 9; ring++) {
           const r = (ring / 9) * maxR;
           const count = ring * 8;
-          
-          // Speed shifts dynamically depending on user's cursor vector proximity
-          const mDist = p.dist(p.mouseX, p.mouseY, cx, cy);
-          const speedFactor = p.map(mDist, 0, p.width, 2.5, 0.8);
-          
+          const speedFactor = p.map(p.dist(p.mouseX, p.mouseY, cx, cy), 0, p.width, 2.5, 0.8);
           for (let i = 0; i < count; i++) {
-            let baseAngle = p.TWO_PI * i / count + t * (ring % 2 ? 1 : -1) * speedFactor;
-            
-            let x = Math.cos(baseAngle) * r;
-            let y = Math.sin(baseAngle) * r;
-
-            // Apply magnetic distortion shift toward the eased mouse position
+            let a = p.TWO_PI * i / count + t * (ring % 2 ? 1 : -1) * speedFactor;
+            let x = Math.cos(a) * r;
+            let y = Math.sin(a) * r;
             const worldX = cx + x;
             const worldY = cy + y;
-            const dToMouse = p.dist(easeMouseX, easeMouseY, worldX, worldY);
-            if (dToMouse < 250) {
-              const force = p.map(dToMouse, 0, 250, 24, 0);
+            const d = p.dist(easeMouseX, easeMouseY, worldX, worldY);
+            if (d < 250) {
+              const force = p.map(d, 0, 250, 24, 0);
               const angleToMouse = p.atan2(easeMouseY - worldY, easeMouseX - worldX);
               x += Math.cos(angleToMouse) * force;
               y += Math.sin(angleToMouse) * force;
             }
-
             p.push();
             p.translate(x, y);
-            p.rotate(baseAngle + t * 0.5);
-            
-            const s = 7 + ring * 2.0;
+            p.rotate(a + t * 0.5);
+            const s = 7 + ring * 2;
             const palette = [colors.mint, colors.paper, colors.orange, colors.gold];
             p.stroke(palette[(i + ring) % palette.length] + "8c");
             p.strokeWeight(1);
             p.noFill();
-            
             if ((i + ring) % 3 === 0) p.rect(-s/2, -s/2, s, s, s*.25);
             else if ((i + ring) % 3 === 1) p.circle(0, 0, s);
-            else {
-              p.line(-s/2, 0, s/2, 0);
-              p.line(0, -s/2, 0, s/2);
-            }
+            else { p.line(-s/2, 0, s/2, 0); p.line(0, -s/2, 0, s/2); }
             p.pop();
           }
         }
@@ -1076,353 +1383,178 @@
       };
     });
 
-    // Unified interactive system handling all practice & system thumbnail animations
     function drawThumb(host, mode) {
+      if (!window.p5) return;
       new p5((p) => {
         let t = 0;
-        let hoverFactor = 0; // Seamlessly transitions between neutral and interactive states
-        let nodes = [];       // Cache tracking arrays for node-network simulations
-
+        let hoverFactor = 0;
+        let nodes = [];
         p.setup = () => {
-          const cnv = p.createCanvas(host.offsetWidth, host.offsetHeight);
-          cnv.parent(host);
+          p.createCanvas(host.offsetWidth, host.offsetHeight);
           p.pixelDensity(Math.min(2, window.devicePixelRatio || 1));
-          
-          // Seed structural properties uniquely tailored for the 'Inquiry' network simulation
           if (mode === "inquiry") {
-            for (let i = 0; i < 9; i++) {
-              nodes.push({
-                baseAngle: p.TWO_PI * i / 9,
-                x: 0, y: 0,
-                vx: 0, vy: 0,
-                seed: p.random(10, 100)
-              });
-            }
+            for (let i = 0; i < 9; i++) nodes.push({ baseAngle: p.TWO_PI * i / 9, x: host.offsetWidth/2, y: host.offsetHeight/2, vx: 0, vy: 0 });
           }
         };
-
         p.windowResized = () => p.resizeCanvas(host.offsetWidth, host.offsetHeight);
-
         p.draw = () => {
           p.background(colors.paper);
           if (!window.__ccMotionPaused) t += 0.003;
-
           const w = p.width, h = p.height;
-          
-          // Contextually flag bounds to monitor element hover mechanics securely
           const isHovered = (p.mouseX >= 0 && p.mouseX <= w && p.mouseY >= 0 && p.mouseY <= h);
           hoverFactor += ((isHovered ? 1 : 0) - hoverFactor) * 0.12;
-
           p.strokeWeight(1);
 
-          // Practice 01: SYMMETRY (Interactive Kaleidoscope Morphing)
           if (mode === "symmetry") {
             p.translate(w / 2, h / 2);
-            // Smoothly calculate layout distribution matching cursor placement factors
-            const targetSlices = isHovered ? 12 : 8;
+            const slices = isHovered ? 12 : 8;
             const mouseAngle = p.atan2(p.mouseY - h/2, p.mouseX - w/2);
-            
             for (let i = 0; i < 12; i++) {
-              if (!isHovered && i >= 8) continue; 
+              if (!isHovered && i >= 8) continue;
               p.push();
-              p.rotate(p.TWO_PI * i / targetSlices + (t * 0.2) + (mouseAngle * hoverFactor * 0.15));
-              
+              p.rotate(p.TWO_PI * i / slices + t * 0.2 + mouseAngle * hoverFactor * 0.15);
               p.stroke(colors.blue);
               p.fill(i % 2 ? colors.mint : colors.orange);
-              
-              // Morph scale boundaries dynamically matching element interaction focus
-              const morphSize = 1.0 + (hoverFactor * 0.15 * p.sin(t * 3));
-              p.scale(morphSize);
-
+              const morph = 1 + hoverFactor * 0.15 * p.sin(t * 3);
+              p.scale(morph);
               p.beginShape();
-              p.vertex(0, -h * .34); 
-              p.vertex(w * .045, -h * .11); 
-              p.vertex(w * .17, -h * .11);
-              p.vertex(w * .075, h * .02); 
-              p.vertex(w * .105, h * .23);
-              p.vertex(0, h * .12); 
-              p.vertex(-w * .105, h * .23);
-              p.vertex(-w * .075, h * .02); 
-              p.vertex(-w * .17, -h * .11); 
-              p.vertex(-w * .045, -h * .11);
+              p.vertex(0, -h * .34); p.vertex(w * .045, -h * .11); p.vertex(w * .17, -h * .11);
+              p.vertex(w * .075, h * .02); p.vertex(w * .105, h * .23); p.vertex(0, h * .12);
+              p.vertex(-w * .105, h * .23); p.vertex(-w * .075, h * .02); p.vertex(-w * .17, -h * .11); p.vertex(-w * .045, -h * .11);
               p.endShape(p.CLOSE);
               p.pop();
             }
-            p.fill(colors.gold); 
-            p.noStroke(); 
-            p.circle(0, 0, 18 + (hoverFactor * 8));
+            p.fill(colors.gold); p.noStroke(); p.circle(0, 0, 18 + hoverFactor * 8);
           }
 
-          // Practice 02: INQUIRY (Dynamic Node Rejection Spring Grid)
           if (mode === "inquiry") {
-            nodes.forEach((n, i) => {
-              const radiusX = w * 0.32;
-              const radiusY = h * 0.28;
-              const targetX = w / 2 + Math.cos(n.baseAngle + t * 0.4) * radiusX;
-              const targetY = h / 2 + Math.sin(n.baseAngle * 1.4 + t * 0.2) * radiusY;
-              
-              // Track physics calculations matching cursor projection vectors
+            nodes.forEach((n) => {
+              const targetX = w/2 + Math.cos(n.baseAngle + t * 0.4) * w * 0.32;
+              const targetY = h/2 + Math.sin(n.baseAngle * 1.4 + t * 0.2) * h * 0.28;
               let fx = (targetX - n.x) * 0.1;
               let fy = (targetY - n.y) * 0.1;
-              
-              const dToMouse = p.dist(p.mouseX, p.mouseY, n.x, n.y);
-              if (dToMouse < 80) {
-                const repellingForce = p.map(dToMouse, 0, 80, 12, 0) * hoverFactor;
-                const angle = p.atan2(n.y - p.mouseY, n.x - p.mouseX);
-                fx += Math.cos(angle) * repellingForce;
-                fy += Math.sin(angle) * repellingForce;
+              const d = p.dist(p.mouseX, p.mouseY, n.x, n.y);
+              if (d < 80) {
+                const f = p.map(d, 0, 80, 12, 0) * hoverFactor;
+                const a = p.atan2(n.y - p.mouseY, n.x - p.mouseX);
+                fx += Math.cos(a) * f; fy += Math.sin(a) * f;
               }
-              
-              n.vx = (n.vx + fx) * 0.75;
-              n.vy = (n.vy + fy) * 0.75;
-              n.x += n.vx;
-              n.y += n.vy;
+              n.vx = (n.vx + fx) * 0.75; n.vy = (n.vy + fy) * 0.75;
+              n.x += n.vx; n.y += n.vy;
             });
-
-            // Handle rendering lines mapping structural network bonds cleanly
             p.stroke(colors.blue + (isHovered ? "cc" : "55"));
             p.strokeWeight(isHovered ? 1.5 : 1);
-            for (let i = 0; i < nodes.length; i++) {
-              for (let j = i + 1; j < nodes.length; j++) {
-                if ((i + j) % 3 === 0) {
-                  p.line(nodes[i].x, nodes[i].y, nodes[j].x, nodes[j].y);
-                }
-              }
-            }
-            
-            nodes.forEach((n, i) => {
-              p.fill([colors.orange, colors.mint, colors.gold][i % 3]);
-              p.stroke(colors.ink + "44");
-              p.circle(n.x, n.y, 14 + (hoverFactor * 4));
-            });
-            
-            p.fill(colors.ink); 
-            p.noStroke(); 
-            p.textFont("monospace"); 
-            p.textSize(12 + (hoverFactor * 4)); 
-            p.textAlign(p.CENTER, p.CENTER);
-            p.text("?", w / 2, h / 2 + 1);
+            for (let i = 0; i < nodes.length; i++) for (let j = i + 1; j < nodes.length; j++) if ((i + j) % 3 === 0) p.line(nodes[i].x, nodes[i].y, nodes[j].x, nodes[j].y);
+            nodes.forEach((n, i) => { p.fill([colors.orange, colors.mint, colors.gold][i % 3]); p.stroke(colors.ink + "44"); p.circle(n.x, n.y, 14 + hoverFactor * 4); });
+            p.fill(colors.ink); p.noStroke(); p.textFont("monospace"); p.textSize(12 + hoverFactor * 4); p.textAlign(p.CENTER, p.CENTER); p.text("?", w/2, h/2 + 1);
           }
 
-          // Practice 03 & System 01: TESSELLATION / TILES (Lens Distortion Field Waves)
           if (mode === "tessellation" || mode === "tiles") {
             const s = 34;
-            for (let y = -s; y < h + s; y += s) {
-              for (let x = -s; x < w + s; x += s) {
-                const k = (Math.floor(x / s) + Math.floor(y / s)) % 4;
-                p.push();
-                p.translate(x + s / 2, y + s / 2);
-                
-                // Establish distortion variables tracking structural grid offsets 
-                const dToMouse = p.dist(p.mouseX, p.mouseY, x + s/2, y + s/2);
-                let localAngle = (k * p.HALF_PI) + t * 0.08;
-                
-                if (dToMouse < 120) {
-                  const influence = p.map(dToMouse, 0, 120, p.PI * 0.75, 0) * hoverFactor;
-                  localAngle += influence;
-                }
-                
-                p.rotate(localAngle);
-                p.stroke(colors.ink + "44");
-                p.fill([colors.blue, colors.mint, colors.orange, colors.gold][(k + 4) % 4]);
-                
-                p.beginShape();
-                const innerSize = s * (0.42 + (hoverFactor * 0.06));
-                p.vertex(0, -innerSize); 
-                p.vertex(innerSize, 0); 
-                p.vertex(0, innerSize); 
-                p.vertex(-innerSize, 0);
-                p.endShape(p.CLOSE);
-                p.pop();
-              }
+            for (let y = -s; y < h + s; y += s) for (let x = -s; x < w + s; x += s) {
+              const k = (Math.floor(x / s) + Math.floor(y / s)) % 4;
+              p.push(); p.translate(x + s / 2, y + s / 2);
+              const d = p.dist(p.mouseX, p.mouseY, x + s/2, y + s/2);
+              let a = k * p.HALF_PI + t * 0.08;
+              if (d < 120) a += p.map(d, 0, 120, p.PI * 0.75, 0) * hoverFactor;
+              p.rotate(a); p.stroke(colors.ink + "44"); p.fill([colors.blue, colors.mint, colors.orange, colors.gold][(k + 4) % 4]);
+              const q = s * (0.42 + hoverFactor * 0.06);
+              p.beginShape(); p.vertex(0, -q); p.vertex(q, 0); p.vertex(0, q); p.vertex(-q, 0); p.endShape(p.CLOSE);
+              p.pop();
             }
           }
 
-          // Practice 04: MAKING (Spring Button Matrix Interactions)
           if (mode === "making") {
-            const cols = 6, rows = 4;
-            const cw = w / cols, ch = h / rows;
-            for (let y = 0; y < rows; y++) {
-              for (let x = 0; x < cols; x++) {
-                const cellCX = x * cw + cw / 2;
-                const cellCY = y * ch + ch / 2;
-                const dToMouse = p.dist(p.mouseX, p.mouseY, cellCX, cellCY);
-                
-                let scalePulse = Math.sin(t * 2 + x * .8 + y * 1.1);
-                let clickImpact = 0;
-                
-                if (dToMouse < 60) {
-                  clickImpact = p.map(dToMouse, 0, 60, 0.6, 0) * hoverFactor;
-                }
-                
-                p.fill(scalePulse > 0 ? colors.cream : colors.paper);
-                p.stroke(colors.ink + "33");
-                
-                p.push();
-                p.translate(cellCX, cellCY);
-                p.scale(1.0 + (clickImpact * 0.15));
-                p.rect(-cw/2 + 3, -ch/2 + 3, cw - 6, ch - 6, 6 + (clickImpact * 8));
-                
-                p.fill([colors.orange, colors.blue, colors.green, colors.gold][(x + y) % 4]);
-                p.noStroke();
-                p.circle(0, 0, 8 + 8 * Math.abs(scalePulse) + (clickImpact * 12));
-                p.pop();
-              }
+            const cols = 6, rows = 4, cw = w / cols, ch = h / rows;
+            for (let y = 0; y < rows; y++) for (let x = 0; x < cols; x++) {
+              const cx = x * cw + cw/2, cy = y * ch + ch/2;
+              const d = p.dist(p.mouseX, p.mouseY, cx, cy);
+              const pulse = Math.sin(t * 2 + x * .8 + y * 1.1);
+              const impact = d < 60 ? p.map(d, 0, 60, 0.6, 0) * hoverFactor : 0;
+              p.fill(pulse > 0 ? colors.cream : colors.paper); p.stroke(colors.ink + "33");
+              p.push(); p.translate(cx, cy); p.scale(1 + impact * 0.15);
+              p.rect(-cw/2 + 3, -ch/2 + 3, cw - 6, ch - 6, 6 + impact * 8);
+              p.fill([colors.orange, colors.blue, colors.green, colors.gold][(x + y) % 4]); p.noStroke(); p.circle(0, 0, 8 + 8 * Math.abs(pulse) + impact * 12);
+              p.pop();
             }
           }
 
-          // Practice 05: REFLECTION (Generative Trail Momentum Trackers)
           if (mode === "reflection") {
-            p.translate(w / 2, h / 2);
-            
-            // Adjust trail properties dynamically over historical rotation steps
-            const trackingArcFactor = p.map(p.mouseX, 0, w, 0.5, 2.0);
-            
+            p.translate(w/2, h/2);
+            const factor = p.map(p.mouseX, 0, w, 0.5, 2.0);
             for (let r = 72; r > 16; r -= 13) {
-              p.noFill();
-              p.stroke([colors.blue, colors.orange, colors.green, colors.gold][r % 4] + "cd");
-              p.strokeWeight(1 + (hoverFactor * 1.5));
-              
-              const arcSpan = p.PI * 1.3 + (hoverFactor * p.HALF_PI);
-              p.arc(0, 0, r * 2, r * 2, t * trackingArcFactor + r * .01, t * trackingArcFactor + r * .01 + arcSpan);
+              p.noFill(); p.stroke([colors.blue, colors.orange, colors.green, colors.gold][r % 4] + "cd"); p.strokeWeight(1 + hoverFactor * 1.5);
+              const span = p.PI * 1.3 + hoverFactor * p.HALF_PI;
+              p.arc(0, 0, r * 2, r * 2, t * factor + r * .01, t * factor + r * .01 + span);
             }
-            p.fill(colors.mint); 
-            p.noStroke(); 
-            p.circle(0, 0, 20 + (hoverFactor * 6));
-            p.fill(colors.ink); 
-            p.textFont("monospace"); 
-            p.textSize(9); 
-            p.textAlign(p.CENTER, p.CENTER); 
-            p.text("H/A", 0, 1);
+            p.fill(colors.mint); p.noStroke(); p.circle(0, 0, 20 + hoverFactor * 6);
+            p.fill(colors.ink); p.textFont("monospace"); p.textSize(9); p.textAlign(p.CENTER, p.CENTER); p.text("H/A", 0, 1);
           }
 
-          // System 02: WEAVE (Interactive Fabric Strut Splitters)
           if (mode === "weave") {
             const step = 18;
             for (let x = 0; x < w; x += step) {
-              p.stroke(x / step % 2 ? colors.blue : colors.orange);
-              p.strokeWeight(3);
-              
-              // Dislocate physical coordinates cleanly matching user thread touch actions
-              let dx = 0;
-              if (Math.abs(p.mouseX - x) < 40) {
-                dx = p.map(p.mouseX - x, -40, 40, -12, 12) * hoverFactor;
-              }
+              p.stroke((x / step) % 2 ? colors.blue : colors.orange); p.strokeWeight(3);
+              const dx = Math.abs(p.mouseX - x) < 40 ? p.map(p.mouseX - x, -40, 40, -12, 12) * hoverFactor : 0;
               p.line(x + Math.sin(t + x * .02) * 6 - dx, 0, x + Math.sin(t + x * .02) * 6 - dx, h);
             }
             for (let y = 0; y < h; y += step) {
-              p.stroke(y / step % 2 ? colors.mint : colors.gold);
-              p.strokeWeight(1.5);
-              
-              let dy = 0;
-              if (Math.abs(p.mouseY - y) < 40) {
-                dy = p.map(p.mouseY - y, -40, 40, -12, 12) * hoverFactor;
-              }
+              p.stroke((y / step) % 2 ? colors.mint : colors.gold); p.strokeWeight(1.5);
+              const dy = Math.abs(p.mouseY - y) < 40 ? p.map(p.mouseY - y, -40, 40, -12, 12) * hoverFactor : 0;
               p.line(0, y + Math.cos(t + y * .02) * 6 - dy, w, y + Math.cos(t + y * .02) * 6 - dy);
             }
           }
 
-          // System 03: FUTURE (High-Density Intersecting Nebula Clouds)
           if (mode === "future") {
             for (let i = 0; i < 35; i++) {
               const a = i * .65 + t;
-              
-              // Shift geometric orbit properties cleanly over interaction limits
-              let radiusMult = i * 3.2;
-              if (isHovered) {
-                radiusMult = p.lerp(radiusMult, p.dist(p.mouseX, p.mouseY, w/2, h/2) * (i/35), hoverFactor);
-              }
-              
-              const x = w / 2 + Math.cos(a) * radiusMult;
-              const y = h / 2 + Math.sin(a * 0.9) * radiusMult * 0.8;
-              
-              p.noStroke();
-              p.fill([colors.mint, colors.orange, colors.gold, colors.blue][i % 4] + "c8");
-              p.circle(x, y, 8 + i * .4 + (hoverFactor * 6));
+              let radius = i * 3.2;
+              if (isHovered) radius = p.lerp(radius, p.dist(p.mouseX, p.mouseY, w/2, h/2) * (i/35), hoverFactor);
+              const x = w/2 + Math.cos(a) * radius;
+              const y = h/2 + Math.sin(a * 0.9) * radius * 0.8;
+              p.noStroke(); p.fill([colors.mint, colors.orange, colors.gold, colors.blue][i % 4] + "c8"); p.circle(x, y, 8 + i * .4 + hoverFactor * 6);
             }
           }
         };
-      });
+      }, host);
     }
 
-    // Initialize all practice and system blocks
     document.querySelectorAll(".p5-thumb").forEach(el => drawThumb(el, el.dataset.viz));
 
-    // Upgraded Travel Tiles Lab Layout Grid (4x4 Interactive Adaptive Grid System)
-    new p5((p) => {
+    makeP5("travel-lab-p5", (host) => (p) => {
       let t = 0;
-      let gridHoverStates = []; // Track local hover parameters inside multi-cell matrix items
-
+      let gridHoverStates = [];
       p.setup = () => {
-        const host = document.getElementById("travel-lab-p5");
-        const cnv = p.createCanvas(host.offsetWidth, host.offsetHeight);
-        cnv.parent(host);
+        p.createCanvas(host.offsetWidth, host.offsetHeight);
         p.pixelDensity(Math.min(2, window.devicePixelRatio || 1));
-        
-        // Populate historical layout states cleanly
-        for (let y = 0; y < 4; y++) {
-          for (let x = 0; x < 4; x++) {
-            gridHoverStates.push(0);
-          }
-        }
+        for (let y = 0; y < 4; y++) for (let x = 0; x < 4; x++) gridHoverStates.push(0);
       };
-
-      p.windowResized = () => {
-        const host = document.getElementById("travel-lab-p5");
-        p.resizeCanvas(host.offsetWidth, host.offsetHeight);
-      };
-
+      p.windowResized = () => p.resizeCanvas(host.offsetWidth, host.offsetHeight);
       p.draw = () => {
         p.background(colors.blue);
         if (!window.__ccMotionPaused) t += 0.0022;
-
         const s = Math.min(p.width, p.height) / 5.6;
         const ox = p.width / 2 - s * 1.5;
         const oy = p.height / 2 - s * 1.5;
-
         let index = 0;
         for (let y = 0; y < 4; y++) {
           for (let x = 0; x < 4; x++) {
             const cx = ox + x * s;
             const cy = oy + y * s;
-            
-            // Handle context boundaries for individual matrix structures safely
-            const isOverCell = (p.mouseX >= cx - s/2 && p.mouseX <= cx + s/2 && p.mouseY >= cy - s/2 && p.mouseY <= cy + s/2);
-            gridHoverStates[index] += ((isOverCell ? 1 : 0) - gridHoverStates[index]) * 0.15;
-            const cellHover = gridHoverStates[index];
-
-            p.push();
-            p.translate(cx, cy);
-            
-            // Rotate matching global metrics offset with adaptive localized click properties
-            p.rotate((x + y) * p.HALF_PI / 2 + t + (cellHover * p.HALF_PI));
-            p.stroke(colors.mint + "aa");
-            p.strokeWeight(1 + (cellHover * 1.5));
-            
-            // Adjust matrix backing assets safely
+            const over = (p.mouseX >= cx - s/2 && p.mouseX <= cx + s/2 && p.mouseY >= cy - s/2 && p.mouseY <= cy + s/2);
+            gridHoverStates[index] += ((over ? 1 : 0) - gridHoverStates[index]) * 0.15;
+            const hvr = gridHoverStates[index];
+            p.push(); p.translate(cx, cy);
+            p.rotate((x + y) * p.HALF_PI / 2 + t + hvr * p.HALF_PI);
+            p.stroke(colors.mint + "aa"); p.strokeWeight(1 + hvr * 1.5);
             let baseColor = [colors.paper, colors.orange, colors.gold, colors.green][(x + y) % 4];
-            if (cellHover > 0) {
-              baseColor = p.lerpColor(p.color(baseColor), p.color(colors.pink), cellHover);
-            }
+            if (hvr > 0) baseColor = p.lerpColor(p.color(baseColor), p.color(colors.pink), hvr);
             p.fill(baseColor);
-            
-            const boxScale = s * (0.68 + (cellHover * 0.12));
-            p.rect(-boxScale / 2, -boxScale / 2, boxScale, boxScale, 8 + (cellHover * 8));
-            
-            p.fill(colors.blue);
-            p.noStroke();
-            
-            if ((x + y) % 2 === 0) {
-              p.circle(0, 0, s * (0.28 + (cellHover * 0.1)));
-            } else {
-              p.beginShape();
-              const diamondSize = s * (0.24 + (cellHover * 0.1));
-              p.vertex(0, -diamondSize); 
-              p.vertex(diamondSize, 0); 
-              p.vertex(0, diamondSize); 
-              p.vertex(-diamondSize, 0);
-              p.endShape(p.CLOSE);
-            }
+            const box = s * (0.68 + hvr * 0.12);
+            p.rect(-box/2, -box/2, box, box, 8 + hvr * 8);
+            p.fill(colors.blue); p.noStroke();
+            if ((x + y) % 2 === 0) p.circle(0, 0, s * (0.28 + hvr * 0.1));
+            else { const d = s * (0.24 + hvr * 0.1); p.beginShape(); p.vertex(0, -d); p.vertex(d, 0); p.vertex(0, d); p.vertex(-d, 0); p.endShape(p.CLOSE); }
             p.pop();
             index++;
           }
